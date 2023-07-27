@@ -42,12 +42,18 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4"><b>LOGIN</b></h1>
                                     </div>
-                                    <form class="user" action="dashboard.php">
+                                    <?php
+                                    $msg = $this->session->flashdata('message');
+                                    if (!empty($msg)) {
+                                        echo $msg;
+                                    }
+                                    ?>
+                                    <form class="user" method="post" action="<?= base_url('login/masuk'); ?>">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="username" aria-describedby="emailHelp" name="username" placeholder="Username">
+                                            <input type="text" class="form-control form-control-user" id="username" aria-describedby="emailHelp" name="username" placeholder="Username" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
