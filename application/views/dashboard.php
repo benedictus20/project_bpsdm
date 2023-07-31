@@ -22,6 +22,8 @@
     <link href="<?= base_url() ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
 
     <!-- Template Main CSS File -->
 </head>
@@ -37,13 +39,13 @@
 
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <div style="width: 200px;">
-                            <a href="<?= base_url('') ?>dashboard" class="nav-link align-middle px-1">Dashboard</a>
+                            <a href="<?= base_url('') ?>dashboard/beranda" class="nav-link align-middle px-1"><span>Dashboard</span></a>
                         </div>
                         <div>
-                            <a href="#" class="nav-link align-middle px-1">Manage user</a>
+                            <a href="#" class="nav-link align-middle px-1"> <span>Manage User</span> </a>
                         </div>
                         <div>
-                            <a href="#" class="nav-link align-middle px-1">Undangan</a>
+                            <a href="#" class="nav-link align-middle px-1"><span>Undangan</span></a>
                         </div>
                         <div>
                             <a href="<?= base_url('login/logout') ?>" class="nav-link align-middle px-1">Logout</a>
@@ -56,35 +58,35 @@
                 <h2 style="margin-bottom: 100px;">Dashboard</h2>
                 <!-- NGODING KONTEN DISEBELAH SINI GAN -->
                 <div class="row">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Jumlah Pelatihan dan Webinar</h5>
+                            <div class="fas-regular fa-heart">
+                                <h3 class="card-text" style="text-align: center;">250</h3>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Jumlah Undangan</h5>
+                            <div class="fa-regular fa-heart">
+                                <h3 class="card-text" style="text-align: center;">250</h3>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card" style="width: 21rem; height:10rem; background-color:#029acc; margin-left: 25px;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Jumlah User</h5>
+                            <div class="fa-regular fa-heart">
+                                <h3 class="card-text" style="text-align: center;">250</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </body>
 
