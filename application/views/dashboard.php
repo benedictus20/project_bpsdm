@@ -23,6 +23,7 @@
     <link href="<?= base_url() ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/regular.css" rel="stylesheet" type="text/css">
 
 
     <!-- Template Main CSS File -->
@@ -61,25 +62,22 @@
                     <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px;">
                         <div class="card-body">
                             <h5 class="card-title">Jumlah Pelatihan dan Webinar</h5>
-                            <div class="fas-regular fa-heart">
-                                <h3 class="card-text" style="text-align: center;">250</h3>
-                            </div>
+                            <div><i class="fas fa-regular fa-heart" style="font-size: 50px;"></i></div>
+                            <h3 class="card-text" style="text-align: center;">250</h3>
                         </div>
                     </div>
                     <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px;">
                         <div class="card-body">
                             <h5 class="card-title">Jumlah Undangan</h5>
-                            <div class="fa-regular fa-heart">
-                                <h3 class="card-text" style="text-align: center;">250</h3>
-                            </div>
+                            <div><i class="fas fa-regular fa-heart" style="font-size: 50px;"></i></div>
+                            <h3 class="card-text" style="text-align: center;">250</h3>
                         </div>
                     </div>
                     <div class="card" style="width: 21rem; height:10rem; background-color:#029acc; margin-left: 25px;">
                         <div class="card-body">
                             <h5 class="card-title">Jumlah User</h5>
-                            <div class="fa-regular fa-heart">
-                                <h3 class="card-text" style="text-align: center;">250</h3>
-                            </div>
+                            <div><i class="fas fa-heart" style="font-size: 50px;"></i></div>
+                            <h3 class="card-text" style="text-align: center;">250</h3>
                         </div>
                     </div>
                 </div>
