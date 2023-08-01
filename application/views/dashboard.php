@@ -43,7 +43,7 @@
                             <a href="<?= base_url('') ?>dashboard/beranda" class="nav-link align-middle px-1"><span>Dashboard</span></a>
                         </div>
                         <div>
-                            <a href="#" class="nav-link align-middle px-1"> <span>Manage User</span> </a>
+                            <a href="#" class="nav-link align-middle px-1"> <span>Agenda Bidang</span> </a>
                         </div>
                         <div>
                             <a href="#" class="nav-link align-middle px-1"><span>Undangan</span></a>
@@ -59,24 +59,24 @@
                 <h2 style="margin-bottom: 100px;">Dashboard</h2>
                 <!-- NGODING KONTEN DISEBELAH SINI GAN -->
                 <div class="row">
-                    <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px; margin-top:5px;">
+                    <div class="card" style="width: 21rem; height:10rem; background-color:#4fb8e8; margin-left: 25px; margin-top:5px;">
                         <div class="card-body">
                             <h5 class="card-title">Jumlah Pelatihan dan Webinar</h5>
-                            <div><i class="fas fa-regular fa-heart" style="font-size: 50px;"></i></div>
+                            <div><i class="fas fa-podcast" style="font-size: 53px;"></i></div>
                             <h3 class="card-text" style="text-align: center;">250</h3>
                         </div>
                     </div>
                     <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px; margin-top:5px;">
                         <div class="card-body">
                             <h5 class="card-title">Jumlah Undangan</h5>
-                            <div><i class="fas fa-regular fa-heart" style="font-size: 50px;"></i></div>
+                            <div><i class="fas fa-envelope" style="font-size: 50px;"></i></div>
                             <h3 class="card-text" style="text-align: center;">250</h3>
                         </div>
                     </div>
-                    <div class="card" style="width: 21rem; height:10rem; background-color:#029acc; margin-left: 25px;margin-top:5px;">
+                    <div class="card" style="width: 21rem; height:10rem; background-color:#e8d13c; margin-left: 25px;margin-top:5px;">
                         <div class="card-body">
-                            <h5 class="card-title">Jumlah User</h5>
-                            <div><i class="fas fa-heart" style="font-size: 50px;"></i></div>
+                            <h5 class="card-title">Jumlah Agenda Bidang</h5>
+                            <div><i class="fas fa-calendar-day" style="font-size: 50px;"></i></div>
                             <h3 class="card-text" style="text-align: center;">250</h3>
                         </div>
                     </div>
