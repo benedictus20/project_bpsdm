@@ -43,7 +43,7 @@
                             <a href="<?= base_url('') ?>dashboard/beranda" class="nav-link align-middle px-1"><span>Dashboard</span></a>
                         </div>
                         <div>
-                            <a href="#" class="nav-link align-middle px-1"> <span>Agenda Bidang</span> </a>
+                            <a href="<?= base_url('') ?>agenda" class=" nav-link align-middle px-1"> <span>Agenda Bidang</span> </a>
                         </div>
                         <div>
                             <a href="#" class="nav-link align-middle px-1"><span>Undangan</span></a>
