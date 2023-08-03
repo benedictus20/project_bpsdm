@@ -86,7 +86,9 @@
                                 <td><?php echo $a['penyelenggara']; ?></td>
                                 <td><?php echo $a['tempat_kegiatan']; ?></td>
                                 <td><?php echo $a['buka_acara']; ?></td>
-                                <td> <button href="" class="badge rounded-pill text-bg-success" style="width: 60px;">Edit </button><br><button href="" class="badge rounded-pill text-bg-danger" style="width: 60px;">Hapus</button>
+                                <td> 
+                                    <button href="" class="badge rounded-pill text-bg-success" style="width: 60px;" data-toggle="modal" data-target="#EditData">Edit </button>
+                                    <br><button href="" class="badge rounded-pill text-bg-danger" style="width: 60px;">Hapus</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -104,17 +106,47 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="tambahAgendaLabel">Tambah Agenda</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="inputNamaKegiatan" class="col-sm-2 col-form-label">Nama Kegiatan</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputNamaKegiatan" placeholder="Nama Kegiatan">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputBidangPenyelenggara" class="col-sm-2 col-form-label">Bidang Penyelenggara</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputBidangPenyelenggara" placeholder="Bidang Penyelenggara">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputJamPelaksanaan" class="col-sm-2 col-form-label">Jam Pelaksanaan</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputJamPelaksanaan" placeholder="Jam Pelaksanaan">
+                    </div>
+                    <div class="form-group row">
+                    <label for="inputPenyelenggara" class="col-sm-2 col-form-label">Penyelenggara</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPenyelenggara" placeholder="Penyelenggara">
+                    </div>
+                    <div class="form-group row">
+                    <label for="inputTempatKegiatan" class="col-sm-2 col-form-label">Tempat Kegiatan</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputTempatKegiatan" placeholder="Tempat Kegiatan">
+                    </div>
+                    <div class="form-group row">
+                    <label for="inputYangMembukaAcara" class="col-sm-2 col-form-label">Yang Membuka Acara</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputinputYangMembukaAcara" placeholder="Yang Membuka Acara">
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="modal-footer justfy-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
                     </div>
                 </div>
             </div>
