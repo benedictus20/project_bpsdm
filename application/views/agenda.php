@@ -65,7 +65,7 @@
                 </div>
                 <!-- NGODING KONTEN DISEBELAH SINI GAN -->
                 <a href="" class="btn btn-primary" style="margin-bottom: 10px; margin-top:10px;width:fit-content;" data-toggle="modal" data-target="#tambahAgenda">Tambah</a>
-                <table class="table table-striped table-bordered" id="example">
+                <table class="table table-hover table-bordered" id="example">
                     <thead>
                         <th>Tanggal</th>
                         <th>Nama Kegiatan</th>
@@ -74,7 +74,7 @@
                         <th>Penyelenggara</th>
                         <th>Tempat Kegiatan</th>
                         <th>Yang Membuka Acara</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </thead>
                     <tbody>
                         <?php foreach ($agenda as $a) : ?>
@@ -86,9 +86,9 @@
                                 <td><?php echo $a['penyelenggara']; ?></td>
                                 <td><?php echo $a['tempat_kegiatan']; ?></td>
                                 <td><?php echo $a['buka_acara']; ?></td>
-                                <td> 
-                                    <button href="" class="badge rounded-pill text-bg-success" style="width: 60px;" data-toggle="modal" data-target="#EditData">Edit </button>
-                                    <br><button href="" class="badge rounded-pill text-bg-danger" style="width: 60px;">Hapus</button>
+                                <td>
+                                    <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editData<?php echo $a['id']; ?>"><i class="fa fa-edit"></i> </button>
+                                    <button href="" class="badge rounded-pill text-bg-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -100,59 +100,114 @@
                     });
                 </script>
             </div>
-            <!-- Modal -->
+            <!-- Modal tambah -->
             <div class="modal fade" id="tambahAgenda" tabindex="-1" role="dialog" aria-labelledby="tambahAgendaLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class=" modal-header">
                             <h5 class="modal-title" id="tambahAgendaLabel">Tambah Agenda</h5>
                         </div>
-                <div class="card-body">
-                  <div class="form-group row">
-                    <label for="inputNamaKegiatan" class="col-sm-2 col-form-label">Nama Kegiatan</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputNamaKegiatan" placeholder="Nama Kegiatan">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputBidangPenyelenggara" class="col-sm-2 col-form-label">Bidang Penyelenggara</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputBidangPenyelenggara" placeholder="Bidang Penyelenggara">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputJamPelaksanaan" class="col-sm-2 col-form-label">Jam Pelaksanaan</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputJamPelaksanaan" placeholder="Jam Pelaksanaan">
-                    </div>
-                    <div class="form-group row">
-                    <label for="inputPenyelenggara" class="col-sm-2 col-form-label">Penyelenggara</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputPenyelenggara" placeholder="Penyelenggara">
-                    </div>
-                    <div class="form-group row">
-                    <label for="inputTempatKegiatan" class="col-sm-2 col-form-label">Tempat Kegiatan</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputTempatKegiatan" placeholder="Tempat Kegiatan">
-                    </div>
-                    <div class="form-group row">
-                    <label for="inputYangMembukaAcara" class="col-sm-2 col-form-label">Yang Membuka Acara</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputinputYangMembukaAcara" placeholder="Yang Membuka Acara">
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="modal-footer justfy-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                  <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
+                        <div class="modal-body">
+                            <form action="<?= base_url('agenda/tambah_agenda'); ?>" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label>Tanggal</label>
+                                    <input type="date" name="tgl" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama Kegiatan</label>
+                                    <input type="text" name="nama_kegiatan" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Bidang Penyelenggara</label>
+                                    <input type="text" name="bidang_penyelenggara" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Jam Pelaksanaan</label>
+                                    <input type="time" name="Jam" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Penyelenggara</label>
+                                    <input type="text" name="penyelenggara" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tempat Kegiatan</label>
+                                    <input type="text" name="tempat_kegiatan" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Yang Membuka Acara</label>
+                                    <input type="text" name="buka_acara" class="form-control" style="height: 45px;" accept="image/*" required>
+                                </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
+            <!-- Modal edit -->
+            <?php foreach ($agenda as $a) : ?>
+                <div class="modal fade" id="editData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="tambahAgendaLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class=" modal-header">
+                                <h5 class="modal-title" id="tambahAgendaLabel">Edit Agenda</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form action="<?= base_url('agenda/edit_agenda'); ?>" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>Tanggal</label>
+                                        <input type="date" name="tgl" class="form-control" value="<?= $a['tgl']; ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama Kegiatan</label>
+                                        <input type="text" name="nama_kegiatan" class="form-control" value="<?= $a['nama_kegiatan']; ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Bidang Penyelenggara</label>
+                                        <input type="text" name="bidang_penyelenggara" class="form-control" value="<?= $a['bidang_penyelenggara']; ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Jam Pelaksanaan</label>
+                                        <input type="time" name="Jam" class="form-control" value="<?= $a['Jam']; ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Penyelenggara</label>
+                                        <input type="text" name="penyelenggara" class="form-control" value="<?= $a['penyelenggara']; ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Tempat Kegiatan</label>
+                                        <input type="text" name="tempat_kegiatan" class="form-control" value="<?= $a['tempat_kegiatan']; ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Yang Membuka Acara</label>
+                                        <input type="text" name="buka_acara" class="form-control" value="<?= $a['buka_acara']; ?>" required>
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-    </div>
-    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
