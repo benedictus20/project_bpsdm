@@ -88,7 +88,7 @@
                                 <td><?php echo $a['buka_acara']; ?></td>
                                 <td>
                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editData<?php echo $a['id']; ?>"><i class="fa fa-edit"></i> </button>
-                                    <button href="" class="badge rounded-pill text-bg-danger"><i class="fa fa-trash"></i></button>
+                                    <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteData<?php echo $a['id']; ?>"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -154,12 +154,13 @@
             </div>
 
             <!-- Modal edit -->
-            <?php foreach ($agenda as $a) : ?>
-                <div class="modal fade" id="editData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="tambahAgendaLabel" aria-hidden="true">
+            <?php $no = 0;
+            foreach ($agenda as $a) : $no++; ?>
+                <div class="modal fade" id="editData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editAgendaLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class=" modal-header">
-                                <h5 class="modal-title" id="tambahAgendaLabel">Edit Agenda</h5>
+                                <h5 class="modal-title" id="editAgendaLabel">Edit Agenda</h5>
                             </div>
                             <div class="modal-body">
                                 <form action="<?= base_url('agenda/edit_agenda'); ?>" method="post" enctype="multipart/form-data">
@@ -209,6 +210,35 @@
             <?php endforeach; ?>
         </div>
     </div>
+
+     <!-- Modal hapus -->
+     <?php $no = 0;
+            foreach ($agenda as $a) : $no++; ?>
+                <div class="modal fade" id="deleteData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteAgendaLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class=" modal-header">
+                                <h5 class="modal-title" id="deleteAgendaLabel">Hapus Data</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form action="<?= base_url('agenda/delete_agenda'); ?>" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>Anda Yakin akan menghapus data ini ?</label>
+                                        <input type="text" name="nama_kegiatan" class="form-control" value="<?= $a['nama_kegiatan']; ?>" required>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Hapus</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
