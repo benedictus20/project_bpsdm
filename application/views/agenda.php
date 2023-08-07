@@ -64,6 +64,12 @@
                     <h2>Agenda Bidang</h2>
                 </div>
                 <!-- NGODING KONTEN DISEBELAH SINI GAN -->
+                <?php
+                $msg = $this->session->flashdata('flash');
+                if (!empty($msg)) {
+                    echo $msg;
+                }
+                ?>
                 <a href="" class="btn btn-primary" style="margin-bottom: 10px; margin-top:10px;width:fit-content;" data-toggle="modal" data-target="#tambahAgenda">Tambah</a>
                 <table class="table table-hover table-bordered" id="example">
                     <thead>
@@ -145,8 +151,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
                         </div>
                         </form>
                     </div>
@@ -154,8 +160,8 @@
             </div>
 
             <!-- Modal edit -->
-            <?php $no = 0;
-            foreach ($agenda as $a) : $no++; ?>
+            <?php
+            foreach ($agenda as $a) : ?>
                 <div class="modal fade" id="editData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editAgendaLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -164,6 +170,10 @@
                             </div>
                             <div class="modal-body">
                                 <form action="<?= base_url('agenda/edit_agenda'); ?>" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        <input type="number" name="id" class="form-control" value="<?= $a['id']; ?>" readonly>
+                                    </div>
                                     <div class="form-group">
                                         <label>Tanggal</label>
                                         <input type="date" name="tgl" class="form-control" value="<?= $a['tgl']; ?>" required>
@@ -200,7 +210,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                             </form>
@@ -211,32 +221,32 @@
         </div>
     </div>
 
-     <!-- Modal hapus -->
-     <?php $no = 0;
-            foreach ($agenda as $a) : $no++; ?>
-                <div class="modal fade" id="deleteData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteAgendaLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class=" modal-header">
-                                <h5 class="modal-title" id="deleteAgendaLabel">Hapus Data</h5>
-                            </div>
-                            <div class="modal-body">
-                                <form action="<?= base_url('agenda/delete_agenda'); ?>" method="post" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label>Anda Yakin akan menghapus data ini ?</label>
-                                        <input type="text" name="nama_kegiatan" class="form-control" value="<?= $a['nama_kegiatan']; ?>" required>
-                                    </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Hapus</button>
-                            </div>
-                            </form>
-                        </div>
+    <!-- Modal hapus -->
+    <?php
+    foreach ($agenda as $a) : ?>
+        <div class="modal fade" id="deleteData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteAgendaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class=" modal-header">
+                        <h5 class="modal-title" id="deleteAgendaLabel">Hapus Data</h5>
                     </div>
+                    <div class="modal-body">
+                        <form action="<?= base_url('agenda/delete_agenda'); ?>" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Anda Yakin akan menghapus Agenda <?= $a['nama_kegiatan'] ?> ?</label>
+                                <input type="hidden" name="id" required="" value="<?= $a['id']; ?>">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Hapus</button>
+                    </div>
+                    </form>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
+    <?php endforeach; ?>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

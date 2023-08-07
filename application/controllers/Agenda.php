@@ -29,10 +29,12 @@ class Agenda extends CI_Controller
             'buka_acara' => $buka_acara
         );
         $this->db->insert('agenda_bidang', $data);
+        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Agenda Berhasil Ditambah</div>');
         redirect('agenda/index');
     }
     public function edit_agenda()
-    {   
+    {
+        $id = $this->input->post('id');
         $tgl = $this->input->post('tgl');
         $nama = $this->input->post('nama_kegiatan');
         $bidang = $this->input->post('bidang_penyelenggara');
@@ -42,6 +44,7 @@ class Agenda extends CI_Controller
         $buka_acara = $this->input->post('buka_acara');
 
         $data = array(
+            'id' => $id,
             'tgl' => $tgl,
             'nama_kegiatan' => $nama,
             'bidang_penyelenggara' => $bidang,
@@ -50,31 +53,20 @@ class Agenda extends CI_Controller
             'tempat_kegiatan' => $tempat,
             'buka_acara' => $buka_acara
         );
-        $this->db->where('tgl',$data['tgl']);
+        $this->db->where('id', $data['id']);
         $this->db->update('agenda_bidang', $data);
+        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Agenda Berhasil Diedit</div>');
         redirect('agenda/index');
     }
     public function delete_agenda()
-    {   
-        $tgl = $this->input->post('tgl');
-        $nama = $this->input->post('nama_kegiatan');
-        $bidang = $this->input->post('bidang_penyelenggara');
-        $jam = $this->input->post('Jam');
-        $penyelenggara = $this->input->post('penyelenggara');
-        $tempat = $this->input->post('tempat_kegiatan');
-        $buka_acara = $this->input->post('buka_acara');
-
+    {
+        $id = $this->input->post('id');
         $data = array(
-            'tgl' => $tgl,
-            'nama_kegiatan' => $nama,
-            'bidang_penyelenggara' => $bidang,
-            'Jam' => $jam,
-            'penyelenggara' => $penyelenggara,
-            'tempat_kegiatan' => $tempat,
-            'buka_acara' => $buka_acara
+            'id' => $id,
         );
-        $this->db->where('nama_kegiatan',$data['nama_kegiatan']);
-        $this->db->delete('agenda_bidang');
-        redirect('agenda/index');
+        $this->db->where('id', $data['id']);
+        $this->db->delete('agenda_bidang', $data);
+        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Agenda Berhasil Dihapus</div>');
+        redirect('agenda');
     }
 }
