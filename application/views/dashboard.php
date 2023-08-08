@@ -1,90 +1,197 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BPSDM</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets/img/logo.png" />
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="<?= base_url() ?>assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/fontawesome-free/css/all.min.css">
     <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/regular.css" rel="stylesheet" type="text/css">
-
-
-    <!-- Template Main CSS File -->
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>assets/vendor/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>assets/vendor/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>assets/vendor/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <div class="col-lg-9">
-                        <img src="<?= base_url() ?>assets/img/logo_BPSDM.png" width="160px" style="margin-bottom: 70px; margin-top:20px;">
-                    </div>
-
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <div style="width: 200px;">
-                            <a href="<?= base_url('') ?>dashboard/beranda" class="nav-link align-middle px-1"><span>Dashboard</span></a>
-                        </div>
-                        <div>
-                            <a href="<?= base_url('') ?>agenda" class=" nav-link align-middle px-1"> <span>Agenda Bidang</span> </a>
-                        </div>
-                        <div>
-                            <a href="#" class="nav-link align-middle px-1"><span>Undangan</span></a>
-                        </div>
-                        <div>
-                            <a href="<?= base_url('login/logout') ?>" class="nav-link align-middle px-1">Logout</a>
-                        </div>
-                    </ul>
-                    <hr>
-                </div>
-            </div>
-            <div class="col py-3">
-                <h2 style="margin-bottom: 100px;">Dashboard</h2>
-                <!-- NGODING KONTEN DISEBELAH SINI GAN -->
-                <div class="row">
-                    <div class="card" style="width: 21rem; height:10rem; background-color:#4fb8e8; margin-left: 25px; margin-top:5px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Jumlah Pelatihan dan Webinar</h5>
-                            <div><i class="fas fa-podcast" style="font-size: 53px;"></i></div>
-                            <h3 class="card-text" style="text-align: center;">250</h3>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 21rem; height:10rem; background-color:#1e8704; margin-left: 25px; margin-top:5px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Jumlah Undangan</h5>
-                            <div><i class="fas fa-envelope" style="font-size: 50px;"></i></div>
-                            <h3 class="card-text" style="text-align: center;">250</h3>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 21rem; height:10rem; background-color:#e8d13c; margin-left: 25px;margin-top:5px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Jumlah Agenda Bidang</h5>
-                            <div><i class="fas fa-calendar-day" style="font-size: 50px;"></i></div>
-                            <h3 class="card-text" style="text-align: center;">250</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <div class="col-lg-9 align-items-center align-items-sm-start px-3">
+            <img src="<?= base_url() ?>assets/img/logo_BPSDM.png" width="160px" style="margin-bottom: 20px; margin-top:20px;">
         </div>
-    </div>
-    </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="<?= base_url('') ?>dashboard/beranda" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Agenda
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('') ?>agenda" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Agenda Bidang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Undangan</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('login/logout') ?>" class="nav-link">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 nav-icon"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Dashboard</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info" style="width: 21rem; height:10rem;margin-left: 10px; margin-top:5px;">
+                            <div class=" inner">
+                                <h3>250</h3>
+
+                                <p>Jumlah Pelatihan dan Webinar</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-podcast"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success" style="width: 21rem; height:10rem; margin-left: 60px; margin-top:5px;">
+                            <div class="inner">
+                                <h3>250</sup></h3>
+
+                                <p>Jumlah Agenda Bidang</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning" style="width: 21rem; height:10rem;margin-left: 110px; margin-top:5px;">
+                            <div class="inner">
+                                <h3>250</h3>
+
+                                <p>Jumlah Undangan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <!-- Control Sidebar -->
+                    <aside class="control-sidebar control-sidebar-dark">
+                        <!-- Control sidebar content goes here -->
+                    </aside>
+                    <!-- /.control-sidebar -->
+                </div>
+                <!-- ./wrapper -->
+
+                <!-- jQuery -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/jquery/jquery.min.js"></script>
+                <!-- jQuery UI 1.11.4 -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/jquery-ui/jquery-ui.min.js"></script>
+                <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+                <script>
+                    $.widget.bridge('uibutton', $.ui.button)
+                </script>
+                <!-- Bootstrap 4 -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- ChartJS -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/chart.js/Chart.min.js"></script>
+                <!-- Sparkline -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/sparklines/sparkline.js"></script>
+                <!-- JQVMap -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/jqvmap/jquery.vmap.min.js"></script>
+                <script src="<?= base_url() ?>assets/vendor/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+                <!-- jQuery Knob Chart -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/jquery-knob/jquery.knob.min.js"></script>
+                <!-- daterangepicker -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/moment/moment.min.js"></script>
+                <script src="<?= base_url() ?>assets/vendor/plugins/daterangepicker/daterangepicker.js"></script>
+                <!-- Tempusdominus Bootstrap 4 -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+                <!-- Summernote -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/summernote/summernote-bs4.min.js"></script>
+                <!-- overlayScrollbars -->
+                <script src="<?= base_url() ?>assets/vendor/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+                <!-- AdminLTE App -->
+                <script src="<?= base_url() ?>assets/vendor/dist/js/adminlte.js"></script>
+                <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+                <script src="<?= base_url() ?>assets/vendor/dist/js/pages/dashboard.js"></script>
+                <!-- AdminLTE for demo purposes -->
+                <script src="<?= base_url() ?>assets/vendor/dist/js/demo.js"></script>
+            </div>
+        </section>
     </div>
 </body>
 
