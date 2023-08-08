@@ -15,7 +15,6 @@ class Agenda extends CI_Controller
         $nama = $this->input->post('nama_kegiatan');
         $bidang = $this->input->post('bidang_penyelenggara');
         $jam = $this->input->post('Jam');
-        $penyelenggara = $this->input->post('penyelenggara');
         $tempat = $this->input->post('tempat_kegiatan');
         $buka_acara = $this->input->post('buka_acara');
 
@@ -24,7 +23,6 @@ class Agenda extends CI_Controller
             'nama_kegiatan' => $nama,
             'bidang_penyelenggara' => $bidang,
             'Jam' => $jam,
-            'penyelenggara' => $penyelenggara,
             'tempat_kegiatan' => $tempat,
             'buka_acara' => $buka_acara
         );
@@ -39,7 +37,6 @@ class Agenda extends CI_Controller
         $nama = $this->input->post('nama_kegiatan');
         $bidang = $this->input->post('bidang_penyelenggara');
         $jam = $this->input->post('Jam');
-        $penyelenggara = $this->input->post('penyelenggara');
         $tempat = $this->input->post('tempat_kegiatan');
         $buka_acara = $this->input->post('buka_acara');
 
@@ -48,8 +45,6 @@ class Agenda extends CI_Controller
             'tgl' => $tgl,
             'nama_kegiatan' => $nama,
             'bidang_penyelenggara' => $bidang,
-            'Jam' => $jam,
-            'penyelenggara' => $penyelenggara,
             'tempat_kegiatan' => $tempat,
             'buka_acara' => $buka_acara
         );
