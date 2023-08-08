@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('') ?>undangan" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Undangan</p>
                             </a>
@@ -112,7 +112,7 @@
                                     echo $msg;
                                 }
                                 ?>
-                                <a href="" class="btn btn-primary" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahAgenda">Tambah</a>
+                                <a href="" class="btn btn-success" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahAgenda"><i class="fas fa-plus fa-sm"></i>Tambah</a>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <th>Tanggal</th>

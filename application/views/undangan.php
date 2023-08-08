@@ -112,7 +112,7 @@
                                     echo $msg;
                                 }
                                 ?>
-                                <a href="" class="btn btn-primary" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahUndangan"><i class="fas fa-plus fa-sm"></i>Tambah</a>
+                                <a href="" class="btn btn-success" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahUndangan"><i class="fas fa-plus fa-sm"></i>Tambah</a>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <th>Tanggal</th>
@@ -204,10 +204,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -230,43 +226,36 @@
                         <form action="<?= base_url('undangan/edit_undangan'); ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
 
-                                <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
+                            <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
                             </div>
                             <div class="form-group">
-                                <label>Tanggal</label>
-                                <input type="date" name="tgl" class="form-control" value="<?= $b['tgl']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Nama Kegiatan</label>
-                                <input type="text" name="nama_kegiatan" class="form-control" value="<?= $b['nama_kegiatan']; ?>" required>
-                            </div>
+                            <label>Tanggal</label>
+                            <input type="date" name="tgl" class="form-control"value="<?= $b['tgl']; ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>judul_undangan</label>
+                            <input type="text" name="judul_undangan" class="form-control"value="<?= $b['judul_undangan']; ?>" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Bidang Penyelenggara</label>
-                                <select class="form-control" name="bidang_penyelenggara">
-                                    <option value="<?= $a['bidang_penyelenggara']; ?>"><?= $b['bidang_penyelenggara']; ?></option>
-                                    <option value="Bidang SPK">Bidang SPK</option>
-                                    <option value="Bidang PKTI">Bidang PKTI</option>
-                                    <option value="Bidang PKTU">Bidang PKTU</option>
-                                    <option value="Bidang PKM">Bidang PKM</option>
-                                    <option value="Sekretariat">Sekretariat</option>
+                        <div class="form-group">
+                            <label>Jam Pelaksanaan</label>
+                            <input type="time" name="jam_pelaksanaan" class="form-control"value="<?= $b['jam_pelaksanaan']; ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tempat Pelaksana</label>
+                            <input type="text" name="tempat_pelaksana" class="form-control"value="<?= $b['tempat_pelaksana']; ?>" required>
+                        </div>
 
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label>yang_ditugaskan</label>
+                            <input type="text" name="yang_ditugaskan" class="form-control"value="<?= $b['yang_ditugaskan']; ?>" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Jam Pelaksanaan</label>
-                                <input type="time" name="Jam" class="form-control" value="<?= $b['Jam']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Tempat Kegiatan</label>
-                                <input type="text" name="tempat_kegiatan" class="form-control" value="<?= $b['tempat_kegiatan']; ?>" required>
-                            </div>
+                        <div class="form-group">
+                            <label>nomor_surat</label>
+                            <input type="text" name="nomor_surat" class="form-control"value="<?= $b['nomor_surat']; ?>" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Yang Ditugaskan</label>
-                                <textarea name="buka_acara" class="form-control" rows="3"><?= $b['buka_acara']; ?></textarea>
-                            </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">File input</label>
                                 <div class="input-group">
@@ -278,10 +267,6 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                                 </div>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
                             </div>
                         </div>
                     <div class="modal-footer">
