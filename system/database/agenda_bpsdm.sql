@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 09:03 AM
+-- Generation Time: Aug 08, 2023 at 05:32 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -35,7 +35,7 @@ CREATE TABLE `agenda_bidang` (
   `Jam` time NOT NULL,
   `penyelenggara` varchar(200) NOT NULL,
   `tempat_kegiatan` varchar(225) NOT NULL,
-  `buka_acara` varchar(50) NOT NULL
+  `buka_acara` varchar(400) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -43,8 +43,11 @@ CREATE TABLE `agenda_bidang` (
 --
 
 INSERT INTO `agenda_bidang` (`id`, `tgl`, `nama_kegiatan`, `bidang_penyelenggara`, `Jam`, `penyelenggara`, `tempat_kegiatan`, `buka_acara`) VALUES
-(1, '2023-08-09', 'Pelatihan', 'sekretariat', '09:00:00', 'BPSDM Provinsi Jawa Barat', 'Gedung A', 'ACEP BAMBANG MUTAKIN,S.STP., M.Si.'),
-(2, '2023-08-03', 'Webinar', 'Bidang SKPK', '09:00:00', 'BPSDM Provinsi Jawa Barat', 'Gedung B', 'ANGGA MUCHLIS AL-RACHMAT,S.I.P., M.Si.');
+(5, '2023-07-24', 'Pelatihan', 'Bidang SPK', '09:00:00', 'BPSDM Provinsi Jawa Barat', 'Gedung A', 'ACEP BAMBANG MUTAKIN,S.STP., M.Si.'),
+(7, '2023-08-09', 'Diklat', 'SKPK', '09:00:00', 'BPSDM Provinsi Jawa Barat', 'Gedung B', 'DJADJAT SUDRAJAT,S.H., M.Si.'),
+(18, '2023-08-07', 'Webinar', 'Bidang PKTU', '08:30:00', '', 'Gedung A', ''),
+(19, '2023-08-21', 'Apel pagi', 'Bidang SPK', '07:30:00', '', 'Lapangan Apel', ''),
+(20, '2023-09-04', 'Apel pagi', 'Bidang SPK', '07:30:00', '', 'Lapangan Apel', 'Pemimpin apel: DENNY SUMIOK,\r\nPembina apel: AJANG ZAENAL AFANDI,S.T., M.T.\r\nMC: ENDANG RAHMAWATI,');
 
 -- --------------------------------------------------------
 
@@ -54,15 +57,18 @@ INSERT INTO `agenda_bidang` (`id`, `tgl`, `nama_kegiatan`, `bidang_penyelenggara
 
 CREATE TABLE `user` (
   `username` varchar(25) NOT NULL,
-  `password` varchar(256) NOT NULL
+  `password` varchar(256) NOT NULL,
+  `role_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `password`) VALUES
-('superadmin', 'bpsdm@sekretariat');
+INSERT INTO `user` (`username`, `password`, `role_id`) VALUES
+('admin', 'bpsdmjabar', '1'),
+('sekretariat', 'sekretariatbpsdm', '2'),
+('superadmin', 'bpsdm@sekretariat', '1');
 
 --
 -- Indexes for dumped tables
@@ -79,6 +85,16 @@ ALTER TABLE `agenda_bidang`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `agenda_bidang`
+--
+ALTER TABLE `agenda_bidang`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
