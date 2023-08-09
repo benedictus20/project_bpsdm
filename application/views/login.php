@@ -58,6 +58,7 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
+                                        <a class="btn btn-block btn-outline-danger btn-user" href=" <?= base_url('home') ?>" style="margin-top: 10px;">Kembali</a>
                                     </form>
                                 </div>
                             </div>
