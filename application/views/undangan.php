@@ -185,12 +185,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>yang_ditugaskan</label>
+                            <label>Yang Ditugaskan</label>
                             <input type="text" name="yang_ditugaskan" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <label>nomor_surat</label>
+                            <label>Nomor Surat</label>
                             <input type="text" name="nomor_surat" class="form-control" required>
                         </div>
 
@@ -241,12 +241,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>yang_ditugaskan</label>
+                            <label>Yang Ditugaskan</label>
                             <input type="text" name="yang_ditugaskan" class="form-control"value="<?= $b['yang_ditugaskan']; ?>" required>
                         </div>
 
                         <div class="form-group">
-                            <label>nomor_surat</label>
+                            <label>Nomor Surat</label>
                             <input type="text" name="nomor_surat" class="form-control"value="<?= $b['nomor_surat']; ?>" required>
                         </div>
 
