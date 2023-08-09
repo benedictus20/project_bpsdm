@@ -110,7 +110,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info" style="width: 21rem; height:10rem;margin-left: 10px; margin-top:5px;">
                             <div class=" inner">
-                                <h3>250</h3>
+                                <h3><?= $jumlah_pelatihan ?></h3>
 
                                 <p>Jumlah Pelatihan dan Webinar</p>
                             </div>
@@ -124,7 +124,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success" style="width: 21rem; height:10rem; margin-left: 60px; margin-top:5px;">
                             <div class="inner">
-                                <h3>250</sup></h3>
+                                <h3><?= $agenda ?></sup></h3>
 
                                 <p>Jumlah Agenda Bidang</p>
                             </div>
@@ -138,7 +138,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning" style="width: 21rem; height:10rem;margin-left: 110px; margin-top:5px;">
                             <div class="inner">
-                                <h3>250</h3>
+                                <h3><?= $undangan ?></h3>
 
                                 <p>Jumlah Undangan</p>
                             </div>

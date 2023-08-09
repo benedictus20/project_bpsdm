@@ -15,6 +15,10 @@ class Dashboard extends CI_Controller
     }
     public function beranda()
     {
-        $this->load->view('dashboard');
+        $data['agenda'] = $this->db->count_all('agenda_bidang');
+        $data['undangan'] = $this->db->count_all('undangan');
+        $jumlah_pelatihan = ['pelatihan', 'webinar'];
+        $data['jumlah_pelatihan'] = $this->db->where_in('nama_kegiatan', $jumlah_pelatihan)->count_all_results('agenda_bidang');
+        $this->load->view('dashboard', $data);
     }
 }
