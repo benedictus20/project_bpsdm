@@ -17,6 +17,19 @@ class Undangan extends CI_Controller
         $tempat_pelaksana = $this->input->post('tempat_pelaksana');
         $yang_ditugaskan = $this->input->post('yang_ditugaskan');
         $nomor_surat = $this->input->post('nomor_surat');
+        $pdf = $_FILES['pdf'];
+        if ($pdf=''){}else{
+            $config['upload_path']      = './assets/pdf';
+            $config['allowed_types']    ='pdf';
+
+
+            $this->load->library('upload', $config);
+            if(!$this->upload->do_upload('pdf')){
+                echo $this->upload->display_errors();die();
+              } else {
+               $pdf = $this->upload->data('file_name');
+              }
+            }
 
         $data = array(
             'tgl ' => $tgl,
@@ -25,6 +38,7 @@ class Undangan extends CI_Controller
             'tempat_pelaksana' => $tempat_pelaksana,
             'yang_ditugaskan' => $yang_ditugaskan,
             'nomor_surat' => $nomor_surat,
+            'pdf' => $pdf,
         );
         $this->db->insert('undangan', $data);
         $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Undangan Berhasil Ditambah</div>');
@@ -39,6 +53,19 @@ class Undangan extends CI_Controller
         $tempat_pelaksana = $this->input->post('tempat_pelaksana');
         $yang_ditugaskan = $this->input->post('yang_ditugaskan');
         $nomor_surat = $this->input->post('nomor_surat');
+        $pdf = $_FILES['pdf'];
+        if ($pdf=''){}else{
+            $config['upload_path']      = './assets/pdf';
+            $config['allowed_types']    ='pdf';
+
+
+            $this->load->library('upload', $config);
+            if(!$this->upload->do_upload('pdf')){
+                echo $this->upload->display_errors();die();
+              } else {
+               $pdf = $this->upload->data('file_name');
+              }
+            }
 
         $data = array(
             'id' => $id,
@@ -48,6 +75,7 @@ class Undangan extends CI_Controller
             'tempat_pelaksana' => $tempat_pelaksana,
             'yang_ditugaskan' => $yang_ditugaskan,
             'nomor_surat' => $nomor_surat,
+            'pdf' => $pdf,
         );
         $this->db->where('id', $data['id']);
         $this->db->update('undangan', $data);
