@@ -171,7 +171,7 @@
                             <input type="date" name="tgl" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>judul_undangan</label>
+                            <label>Judul Undangan</label>
                             <input type="text" name="judul_undangan" class="form-control" required>
                         </div>
 
@@ -227,7 +227,7 @@
                             <input type="date" name="tgl" class="form-control"value="<?= $b['tgl']; ?>" required>
                         </div>
                         <div class="form-group">
-                            <label>judul_undangan</label>
+                            <label>Judul Undangan</label>
                             <input type="text" name="judul_undangan" class="form-control"value="<?= $b['judul_undangan']; ?>" required>
                         </div>
 
