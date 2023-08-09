@@ -112,7 +112,7 @@
                                     echo $msg;
                                 }
                                 ?>
-                                <a href="" class="btn btn-success" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahAgenda"><i class="fas fa-plus fa-sm"></i>Tambah</a>
+                                <a href="" class="btn btn-success" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahAgenda"><i class="fas fa-plus fa-sm"></i> Tambah</a>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <th>Tanggal</th>
@@ -179,7 +179,7 @@
                                 <option value="Bidang SPK">Bidang SPK</option>
                                 <option value="Bidang PKTI">Bidang PKTI</option>
                                 <option value="Bidang PKTU">Bidang PKTU</option>
-                                <option value="TBidang PKM">Bidang PKM</option>
+                                <option value="Bidang PKM">Bidang PKM</option>
                                 <option value="Sekretariat">Sekretariat</option>
 
                             </select>

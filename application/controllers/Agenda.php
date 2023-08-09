@@ -45,6 +45,7 @@ class Agenda extends CI_Controller
             'tgl' => $tgl,
             'nama_kegiatan' => $nama,
             'bidang_penyelenggara' => $bidang,
+            'Jam' => $jam,
             'tempat_kegiatan' => $tempat,
             'buka_acara' => $buka_acara
         );
