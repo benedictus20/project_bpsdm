@@ -112,7 +112,7 @@
                                     echo $msg;
                                 }
                                 ?>
-                                <a href="" class="btn btn-success" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahUndangan"><i class="fas fa-plus fa-sm"></i>Tambah</a>
+                                <a href="" class="btn btn-success" style="margin-bottom: 10px;width:fit-content;" data-toggle="modal" data-target="#tambahUndangan"><i class="fas fa-plus fa-sm"></i> Tambah</a>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <th>Tanggal</th>
@@ -121,6 +121,7 @@
                                         <th>Tempat Pelaksanan</th>
                                         <th>Yang Ditugaskan</th>
                                         <th>Nomor Surat</th>
+                                        <th>Sample Pdf</th>
                                         <th>Aksi</th>
                                     </thead>
                                     <tbody>
@@ -132,6 +133,7 @@
                                                 <td><?php echo $b['tempat_pelaksana']; ?></td>
                                                 <td><?php echo $b['yang_ditugaskan']; ?></td>
                                                 <td><?php echo $b['nomor_surat']; ?></td>
+                                                <td><?php echo $b['pdf']; ?></td>
                                                 <td>
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editUndangan<?php echo $b['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteUndangan<?php echo $b['id']; ?>"><i class="fa fa-trash"></i></button>
@@ -191,19 +193,11 @@
                             <label>nomor_surat</label>
                             <input type="text" name="nomor_surat" class="form-control" required>
                         </div>
-                        
+
                         <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" name="pdf" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="">Upload</span>
-                      </div>
-                    </div>
-                  </div>
+                            <label>Input PDF</label>
+                            <input type="file" name="pdf" class="form-control" required>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -256,18 +250,10 @@
                             <input type="text" name="nomor_surat" class="form-control"value="<?= $b['nomor_surat']; ?>" required>
                         </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" name="pdf" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
-                                </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label>Input PDF</label>
+                            <input type="file" name="pdf" class="form-control" required>
+                        </div>
                         </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
