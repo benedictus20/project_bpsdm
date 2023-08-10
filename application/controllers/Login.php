@@ -5,34 +5,38 @@ class Login extends CI_Controller
 {
     public function index()
     {
-        $this->load->view("login");
-    }
-    public function masuk()
-    {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-
-        $this->db->where("username", $username);
-        $this->db->where("password", $password);
-        $query = $this->db->get("user");
-        if ($query->num_rows() > 0) {
-            foreach ($query->result as $row) {
-                $session = array(
-                    'username' => $row->username,
-                    'password' => $row->password
-                );
-            }
-            $this->session->get_userdata($session);
-            redirect('Dashboard/beranda');
+        $this->load->library('form_validation');
+        $this->load->model('ModelLogin');
+        $this->form_validation->set_rules('username', 'Username', 'required', ['required' => 'Username wajib diisi']);
+        $this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi']);
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view("login");
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username atau Password Salah</div>');
-            redirect('login');
+            $auth = $this->ModelLogin->cek_login();
+            if ($auth == FALSE) {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					  Username atau Password Anda Salah !
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button> </div>');
+                redirect('login');
+            } else {
+                $this->session->set_userdata('username', $auth->username);
+                $this->session->set_userdata('role_id', $auth->role_id);
+                if ($auth->role_id == 1) {
+                    redirect('Dashboard/admin');
+                    $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG ADMIN<button type="button" class="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times;</span> </button> </div>');
+                } else {
+                    redirect('Dashboard/sekretaris');
+                    $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG SEKRETARIS<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times;</span> </button> </div>');
+                }
+            }
         }
     }
     public function logout()
     {
-        $this->session->unset_userdata('username');
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Anda Sudah Logout</div>');
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Anda Sudah Logout </div>');
         redirect('login');
     }
 }

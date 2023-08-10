@@ -34,7 +34,7 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div>
+                            <div style="margin-top: 20px;">
                                 <img src="<?= base_url() ?>assets/img/log.svg">
                             </div>
                             <div class="col-lg">
@@ -43,12 +43,12 @@
                                         <h1 class="h4 text-gray-900 mb-4"><b>LOGIN</b></h1>
                                     </div>
                                     <?php
-                                    $msg = $this->session->flashdata('message');
+                                    $msg = $this->session->flashdata('pesan');
                                     if (!empty($msg)) {
                                         echo $msg;
                                     }
                                     ?>
-                                    <form class="user" method="post" action="<?= base_url('login/masuk'); ?>">
+                                    <form class="user" method="post" action="<?= base_url('login'); ?>">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="username" aria-describedby="emailHelp" name="username" placeholder="Username" required>
                                         </div>
