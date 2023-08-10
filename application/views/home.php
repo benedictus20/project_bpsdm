@@ -54,7 +54,7 @@
                 <div class="row">
                     <div>
                         <div class="text-white bg-warning disabled color-palette">
-                            <h4 class="text-center">Agenda Bidang</h4>
+                            <h4 class="text-center text-white">Agenda Bidang</h4>
                         </div>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
