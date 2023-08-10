@@ -94,9 +94,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark"><b>Dashboard</b></h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+                <?php
+                $msg = $this->session->flashdata('flash');
+                if (!empty($msg)) {
+                    echo $msg;
+                }
+                ?>
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
