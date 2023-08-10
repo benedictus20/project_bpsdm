@@ -39,7 +39,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= base_url('') ?>dashboard/beranda" class="nav-link">
+                    <a href="<?= base_url('') ?>dashboard/admin" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -121,7 +121,7 @@
                                         <th>Tempat Pelaksanan</th>
                                         <th>Yang Ditugaskan</th>
                                         <th>Nomor Surat</th>
-                                        <th>Sample Pdf</th>
+                                        <th>File Undangan</th>
                                         <th>Aksi</th>
                                     </thead>
                                     <tbody>
@@ -137,8 +137,8 @@
                                                 <td>
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editUndangan<?php echo $b['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteUndangan<?php echo $b['id']; ?>"><i class="fa fa-trash"></i></button>
+                                                    <a href="<?= base_url("./assets/pdf/" .  $b['pdf']) ?>" class="fa fa-download" download></a>
                                                 </td>
-                                                <td><a href="<?= base_url("./assets/pdf/".  $b['pdf'])?>" class="fa fa-download" download></a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -196,7 +196,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Input PDF</label>
+                            <label>File Undangan</label>
                             <input type="file" name="pdf" class="form-control" required>
                         </div>
                 </div>
@@ -208,8 +208,8 @@
             </div>
         </div>
     </div>
-<!-- Modal edit -->
-<?php
+    <!-- Modal edit -->
+    <?php
     foreach ($undangan as $b) : ?>
         <div class="modal fade" id="editUndangan<?php echo $b['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editUndanganLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -221,41 +221,41 @@
                         <form action="<?= base_url('undangan/edit_undangan'); ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
 
-                            <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
+                                <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
                             </div>
                             <div class="form-group">
-                            <label>Tanggal</label>
-                            <input type="date" name="tgl" class="form-control"value="<?= $b['tgl']; ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Judul Undangan</label>
-                            <input type="text" name="judul_undangan" class="form-control"value="<?= $b['judul_undangan']; ?>" required>
-                        </div>
+                                <label>Tanggal</label>
+                                <input type="date" name="tgl" class="form-control" value="<?= $b['tgl']; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Judul Undangan</label>
+                                <input type="text" name="judul_undangan" class="form-control" value="<?= $b['judul_undangan']; ?>" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Jam Pelaksanaan</label>
-                            <input type="time" name="jam_pelaksanaan" class="form-control"value="<?= $b['jam_pelaksanaan']; ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Tempat Pelaksana</label>
-                            <input type="text" name="tempat_pelaksana" class="form-control"value="<?= $b['tempat_pelaksana']; ?>" required>
-                        </div>
+                            <div class="form-group">
+                                <label>Jam Pelaksanaan</label>
+                                <input type="time" name="jam_pelaksanaan" class="form-control" value="<?= $b['jam_pelaksanaan']; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tempat Pelaksana</label>
+                                <input type="text" name="tempat_pelaksana" class="form-control" value="<?= $b['tempat_pelaksana']; ?>" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Yang Ditugaskan</label>
-                            <input type="text" name="yang_ditugaskan" class="form-control"value="<?= $b['yang_ditugaskan']; ?>" required>
-                        </div>
+                            <div class="form-group">
+                                <label>Yang Ditugaskan</label>
+                                <input type="text" name="yang_ditugaskan" class="form-control" value="<?= $b['yang_ditugaskan']; ?>" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Nomor Surat</label>
-                            <input type="text" name="nomor_surat" class="form-control"value="<?= $b['nomor_surat']; ?>" required>
-                        </div>
+                            <div class="form-group">
+                                <label>Nomor Surat</label>
+                                <input type="text" name="nomor_surat" class="form-control" value="<?= $b['nomor_surat']; ?>" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Input PDF</label>
-                            <input type="file" name="pdf" class="form-control" required>
-                        </div>
-                        </div>
+                            <div class="form-group">
+                                <label>File Undangan</label>
+                                <input type="file" name="pdf" class="form-control" value="<?= $b['pdf']; ?>">
+                            </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
