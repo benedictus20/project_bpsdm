@@ -74,7 +74,7 @@
                                             <td><?php echo $a['Jam']; ?></td>
                                             <td><?php echo $a['tempat_kegiatan']; ?></td>
                                             <td><?php echo $a['buka_acara']; ?></td>
-                                            <td><a href="" class="btn btn-block btn-success btn-sm">Lihat</a></td>
+                                            <td><a href="" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#lihatAgenda<?php echo $a['id']; ?>">Lihat</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -83,6 +83,56 @@
                     </div>
                 </div>
             </div>
+    <!-- Lihat Agenda -->
+    <?php
+    foreach ($agenda as $a) : ?>
+        <div class="modal fade" id="lihatAgenda<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="lihatAgendaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class=" modal-header">
+                        <h5 class="modal-title" id="lihatAgendaLabel">Edit Agenda</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?= base_url('agenda/lihat_agenda'); ?>" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+
+                                <input type="hidden" name="id" class="form-control" value="<?= $a['id']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal</label>
+                                <input type="date" name="tgl" class="form-control" value="<?= $a['tgl']; ?>"readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama Kegiatan</label>
+                                <input type="text" name="nama_kegiatan" class="form-control" value="<?= $a['nama_kegiatan']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Bidang Penyelenggara</label>
+                                <input type="text" name="bidang_penyelenggara" class="form-control" value="<?= $a['bidang_penyelenggara']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Jam Pelaksanaan</label>
+                                <input type="time" name="Jam" class="form-control" value="<?= $a['Jam']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tempat Kegiatan</label>
+                                <input type="text" name="tempat_kegiatan" class="form-control" value="<?= $a['tempat_kegiatan']; ?>" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Yang Ditugaskan</label>
+                                <textarea name="buka_acara" class="form-control" rows="3"><?= $a['buka_acara']; ?></textarea>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
             <div class="container px-5 pb-5">
                 <div class="row">
                     <div>
@@ -101,7 +151,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($undangan as $b) : ?>
-                                    <tr>
+                                    <tr>    
                                         <td><?php echo $b['tgl']; ?></td>
                                         <td><?php echo $b['judul_undangan']; ?></td>
                                         <td><?php echo $b['jam_pelaksanaan']; ?></td>
@@ -109,14 +159,70 @@
                                         <td><?php echo $b['yang_ditugaskan']; ?></td>
                                         <td><?php echo $b['nomor_surat']; ?></td>
                                         <td><?php echo $b['pdf']; ?></td>
-                                        <td><a href="" class="btn btn-block btn-success btn-sm">Lihat</a></td>
+                                        <td><a href="" class="btn btn-block btn-success btn-sm"data-toggle="modal" data-target="#lihatUndangan<?php echo $b['id']; ?>">Lihat</a></td>
                                     <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+    <!-- Lihat Undangan -->
+    <?php
+        foreach ($undangan as $b) : ?>
+            <div class="modal fade" id="lihatUndangan<?php echo $b['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="lihatUndanganLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class=" modal-header">
+                            <h5 class="modal-title" id="lihatUndanganLabel">Lihat Undangan</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form action="<?= base_url('home/lihat_undangan'); ?>" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
 
+                                <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                <label>Tanggal</label>
+                                <input type="date" name="tgl" class="form-control"value="<?= $b['tgl']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Judul Undangan</label>
+                                <input type="text" name="judul_undangan" class="form-control"value="<?= $b['judul_undangan']; ?>"readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Jam Pelaksanaan</label>
+                                <input type="time" name="jam_pelaksanaan" class="form-control"value="<?= $b['jam_pelaksanaan']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tempat Pelaksana</label>
+                                <input type="text" name="tempat_pelaksana" class="form-control"value="<?= $b['tempat_pelaksana']; ?>" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Yang Ditugaskan</label>
+                                <input type="text" name="yang_ditugaskan" class="form-control"value="<?= $b['yang_ditugaskan']; ?>" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nomor Surat</label>
+                                <input type="text" name="nomor_surat" class="form-control"value="<?= $b['nomor_surat']; ?>" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sample PDF</label>
+                                <input type="text" name="pdf" class="form-control"value="<?= $b['pdf']; ?>" readonly>
+                            </div>
+
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
         </header>
         <!-- About Section-->
     </main>
