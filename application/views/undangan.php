@@ -138,7 +138,7 @@
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editUndangan<?php echo $b['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteUndangan<?php echo $b['id']; ?>"><i class="fa fa-trash"></i></button>
                                                 </td>
-                                                <td><a href="<?php echo ($b['pdf']); ?>" class="fa fa-download" download></a></td>
+                                                <td><a href="<?= base_url("./assets/pdf/".  $b['pdf'])?>" class="fa fa-download" download></a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>

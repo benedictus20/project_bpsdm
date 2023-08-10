@@ -6,7 +6,6 @@ class Undangan extends CI_Controller
     public function index()
     {
         $data['undangan'] = $this->db->get('undangan')->result_array();
-
         $this->load->view("undangan", $data);
     }
     public function tambah_undangan()
