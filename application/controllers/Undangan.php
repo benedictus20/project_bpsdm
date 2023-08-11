@@ -18,7 +18,7 @@ class Undangan extends CI_Controller
         $nomor_surat = $this->input->post('nomor_surat');
         $pdf = $_FILES['pdf'];
         if ($pdf=''){}else{
-            $config['upload_path']      = './assets/pdf';
+            $config['upload_path']      = './upload';
             $config['allowed_types']    ='pdf';
 
 
@@ -54,7 +54,7 @@ class Undangan extends CI_Controller
         $nomor_surat = $this->input->post('nomor_surat');
         $pdf = $_FILES['pdf'];
         if ($pdf=''){}else{
-            $config['upload_path']      = './assets/pdf';
+            $config['upload_path']      = './upload';
             $config['allowed_types']    ='pdf';
 
 
