@@ -27,7 +27,8 @@ class Agenda extends CI_Controller
             'buka_acara' => $buka_acara
         );
         $this->db->insert('agenda_bidang', $data);
-        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Agenda Berhasil Ditambah</div>');
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Ditambah<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times;</span> </button> </div>');
         redirect('agenda/index');
     }
     public function edit_agenda()
@@ -51,7 +52,8 @@ class Agenda extends CI_Controller
         );
         $this->db->where('id', $data['id']);
         $this->db->update('agenda_bidang', $data);
-        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Agenda Berhasil Diedit</div>');
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Diedit<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times;</span> </button> </div>');
         redirect('agenda/index');
     }
     public function delete_agenda()
@@ -62,7 +64,8 @@ class Agenda extends CI_Controller
         );
         $this->db->where('id', $data['id']);
         $this->db->delete('agenda_bidang', $data);
-        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">Agenda Berhasil Dihapus</div>');
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times;</span> </button> </div>');
         redirect('agenda');
     }
 }
