@@ -107,7 +107,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <?php
-                                $msg = $this->session->flashdata('flash');
+                                $msg = $this->session->flashdata('msg');
                                 if (!empty($msg)) {
                                     echo $msg;
                                 }

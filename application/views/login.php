@@ -55,6 +55,9 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" required>
                                         </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" id="cek"> <i><b>Show Password</b></i>
+                                        </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
@@ -81,6 +84,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url() ?>assets/js/sb-admin-2.min.js"></script>
+    <script>
+        const pw = document.getElementById("password");
+        const cek = document.getElementById("cek");
+
+        cek.onchange = function(e) {
+            pw.type = cek.checked ? "text" : "password";
+        };
+    </script>
 
 </body>
 
