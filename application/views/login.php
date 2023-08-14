@@ -43,7 +43,7 @@
                                         <h1 class="h4 text-gray-900 mb-4"><b>LOGIN</b></h1>
                                     </div>
                                     <?php
-                                    $msg = $this->session->flashdata('pesan');
+                                    $msg = $this->session->flashdata('message');
                                     if (!empty($msg)) {
                                         echo $msg;
                                     }
@@ -56,7 +56,9 @@
                                             <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="checkbox" id="cek"> <i><b>Show Password</b></i>
+                                            <input type="checkbox" id="cek">
+                                            <label class="form-check-label" for="cek">
+                                                <i><b>Show Password</b></i>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login

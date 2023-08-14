@@ -14,21 +14,17 @@ class Login extends CI_Controller
         } else {
             $auth = $this->ModelLogin->cek_login();
             if ($auth == FALSE) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					  Username atau Password Anda Salah !
-					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					  </button> </div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">Username atau Password Anda Salah !</div>');
                 redirect('login');
             } else {
                 $this->session->set_userdata('username', $auth->username);
                 $this->session->set_userdata('role_id', $auth->role_id);
                 if ($auth->role_id == 1) {
-                    redirect('Dashboard/admin');
                     $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG ADMIN<button type="button" class="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times;</span> </button> </div>');
+                    redirect('Dashboard');
                 } else {
-                    redirect('Dashboard/sekretaris');
                     $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG SEKRETARIS<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times;</span> </button> </div>');
+                    redirect('Sekretaris/dashboard_sekretaris');
                 }
             }
         }
@@ -36,7 +32,7 @@ class Login extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Anda Sudah Logout </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Anda Berhasil Logout </div>');
         redirect('login');
     }
 }
