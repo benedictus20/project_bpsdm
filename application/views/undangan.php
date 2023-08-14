@@ -253,6 +253,7 @@
 
                             <div class="form-group">
                                 <label>File Undangan</label>
+                                <input type="text" name="pdf" class="form-control" value="<?= $b['pdf']; ?>" readonly>
                                 <input type="file" name="pdf" class="form-control" value="<?= $b['pdf']; ?>">
                             </div>
                     </div>
