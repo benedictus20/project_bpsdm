@@ -21,6 +21,9 @@ class Undangan extends CI_Controller
         } else {
             $config['upload_path']      = './assets/pdf';
             $config['allowed_types']    = 'pdf';
+        if ($pdf=''){}else{
+            $config['upload_path']      = './upload';
+            $config['allowed_types']    ='pdf';
 
 
             $this->load->library('upload', $config);
@@ -59,6 +62,9 @@ class Undangan extends CI_Controller
         } else {
             $config['upload_path']      = './assets/pdf';
             $config['allowed_types']    = 'pdf';
+        if ($pdf=''){}else{
+            $config['upload_path']      = './upload';
+            $config['allowed_types']    ='pdf';
 
 
             $this->load->library('upload', $config);
