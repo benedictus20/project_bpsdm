@@ -6,10 +6,10 @@ class ModelLogin extends CI_Model{
 
 		$username = set_value('username');
 		$password = set_value('password');
-		$password1 = PASSWORD_VERIFY($password,PASSWORD_DEFAULT);
+
 		
 		$result   = $this->db->where('username', $username)
-							 ->where('password', $password1)
+							 ->where('password', $password)
 							 ->limit(1)
 							 ->get('user');
 
