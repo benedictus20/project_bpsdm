@@ -168,7 +168,7 @@
                         </table>
                     </div>
                     <div class="container px-5 pb-3 d-flex justify-content-center">
-                        <button class="btn btn-block btn-success " style="width: 200px;">Download Agenda</button>
+                        <button class="btn btn-block btn-success " style="width: 200px;">Download Undangan</button>
                     </div>
                 </div>
             </div>

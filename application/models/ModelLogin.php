@@ -1,11 +1,19 @@
-<?php 
+<?php
 
-class ModelLogin extends CI_Model{
+class ModelLogin extends CI_Model
+{
 
-	public function cek_login(){
+	public function cek_login()
+	{
 
 		$username = set_value('username');
 		$password = set_value('password');
+
+		$result   = $this->db->where('username', $username)
+			->where('password', $password)
+			->limit(1)
+			->get('user');
+
 
 		
 		$result   = $this->db->where('username', $username)
@@ -13,9 +21,10 @@ class ModelLogin extends CI_Model{
 							 ->limit(1)
 							 ->get('user');
 
-		if($result->num_rows() > 0){
+
+		if ($result->num_rows() > 0) {
 			return $result->row();
-		}else{
+		} else {
 			return array();
 		}
 	}
