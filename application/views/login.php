@@ -57,8 +57,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="checkbox" id="cek">
-                                            <label class="form-check-label" for="cek">
-                                                <i><b>Show Password</b></i>
+                                            <label class="form-check-label" for="cek">Show Password</label>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
