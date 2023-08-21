@@ -15,6 +15,7 @@ class Undangan_sekretaris extends CI_Controller
             redirect('login');
         } else {
             $data['undangan'] = $this->db->get('undangan')->result_array();
+            $data['user'] = $this->db->where('role_id', '2')->get('user')->row_array();
             $this->load->view("sekretaris/undangan_sekretaris", $data);
         }
     }

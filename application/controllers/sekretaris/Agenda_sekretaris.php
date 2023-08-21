@@ -15,6 +15,7 @@ class Agenda_sekretaris extends CI_Controller
             redirect('login');
         } else {
             $data['agenda'] = $this->db->get('agenda_bidang')->result_array();
+            $data['user'] = $this->db->where('role_id', '2')->get('user')->row_array();
             $this->load->view("sekretaris/agenda_sekretaris", $data);
         }
     }
