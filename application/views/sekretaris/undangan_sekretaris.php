@@ -122,6 +122,7 @@
                                         <th>Yang Ditugaskan</th>
                                         <th>Nomor Surat</th>
                                         <th>File Undangan</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </thead>
                                     <tbody>
@@ -134,6 +135,69 @@
                                                 <td><?php echo $b['yang_ditugaskan']; ?></td>
                                                 <td><?php echo $b['nomor_surat']; ?></td>
                                                 <td><?php echo $b['pdf']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($b['status'] == 0) {
+                                                        echo '<a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#setuju' . $b['id'] . '"><i class="fa fa-check" ></i></a>
+                                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#tolak' . $b['id'] . '"><i class="fa fa-times"></i></a>';
+                                                    ?>
+                                                        <!-- Modal setuju -->
+                                                        <div class="modal fade" id="setuju<?php echo $b['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="setujuLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class=" modal-header">
+                                                                        <h5 class="modal-title" id="setujuLabel">KONFIRMASI</h5>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="<?= base_url('sekretaris/undangan_sekretaris/setuju'); ?>" method="post" enctype="multipart/form-data">
+                                                                            <div class="form-group">
+                                                                                <label>Apa Anda Yakin Untuk Setuju?</label>
+                                                                                <input type="hidden" name="status" class="form-control" value="<?= $b['status']; ?>" readonly>
+                                                                                <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Modal tolak -->
+                                                        <div class="modal fade" id="tolak<?php echo $b['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="tolakLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class=" modal-header">
+                                                                        <h5 class="modal-title" id="tolakLabel">KONFIRMASI</h5>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="<?= base_url('sekretaris/undangan_sekretaris/tolak'); ?>" method="post" enctype="multipart/form-data">
+                                                                            <div class="form-group">
+                                                                                <label>Apa Anda Yakin Untuk Menolak?</label>
+                                                                                <input type="hidden" name="status" class="form-control" value="<?= $b['status']; ?>" readonly>
+                                                                                <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                        if ($b['status'] == 1) {
+                                                            echo '<p class="badge badge-pill badge-success">Telah disetujui</p>';
+                                                        } else {
+                                                            echo '<p class="badge badge-pill badge-danger">Ditolak</p>';
+                                                        }
+                                                    }
+                                                    ?>
+
+                                                </td>
                                                 <td>
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editUndangan<?php echo $b['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteUndangan<?php echo $b['id']; ?>"><i class="fa fa-trash"></i></button>

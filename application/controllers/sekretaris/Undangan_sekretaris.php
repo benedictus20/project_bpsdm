@@ -89,6 +89,7 @@ class Undangan_sekretaris extends CI_Controller
             'yang_ditugaskan' => $yang_ditugaskan,
             'nomor_surat' => $nomor_surat,
             'pdf' => $pdf,
+            'status' => 1
         );
         $this->db->where('id', $data['id']);
         $this->db->update('undangan', $data);
@@ -105,5 +106,39 @@ class Undangan_sekretaris extends CI_Controller
         $this->db->delete('undangan', $data);
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Undangan Berhasil Dihapus</div>');
         redirect('sekretaris/undangan_sekretaris/index');
+    }
+    public function setuju()
+    {
+        $id = $this->input->post('id');
+
+        $data = array(
+            'id' => $id,
+            'status' => 1
+        );
+        $this->db->where('id', $id);
+        if ($this->db->update('undangan', $data)) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Disetujui<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/undangan_sekretaris/index');
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Gagal Menyetujui agenda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/undangan_sekretaris/index');
+        }
+    }
+    public function tolak()
+    {
+        $id = $this->input->post('id');
+
+        $data = array(
+            'id' => $id,
+            'status' => 2
+        );
+        $this->db->where('id', $id);
+        if ($this->db->update('undangan', $data)) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Agenda Berhasil Ditolak<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/undangan_sekretaris/index');
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-warning" role="alert">Gagal Menolak Agenda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/undangan_sekretaris/index');
+        }
     }
 }
