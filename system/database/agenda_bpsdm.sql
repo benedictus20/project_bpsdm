@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2023 at 08:25 AM
+-- Generation Time: Aug 21, 2023 at 09:39 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -45,7 +45,7 @@ CREATE TABLE `agenda_bidang` (
 INSERT INTO `agenda_bidang` (`id`, `tgl`, `nama_kegiatan`, `bidang_penyelenggara`, `Jam`, `tempat_kegiatan`, `buka_acara`, `status`) VALUES
 (5, '2023-07-24', 'Pelatihan', 'Bidang SKPK', '09:00:00', 'Gedung A', 'ACEP BAMBANG MUTAKIN,S.STP., M.Si.', 1),
 (7, '2023-08-09', 'Diklat', 'Bidang SKPK', '09:00:00', 'Gedung B', 'DJADJAT SUDRAJAT,S.H., M.Si.', 1),
-(18, '2023-08-07', 'Webinar', 'Bidang SKPK', '08:30:00', 'Gedung A', '', 0),
+(18, '2023-08-07', 'Webinar', 'Bidang SKPK', '08:30:00', 'Gedung A', '', 2),
 (20, '2023-09-04', 'Apel pagi', 'Bidang PKTI', '07:30:00', 'Lapangan Apel', 'Pemimpin apel: DENNY SUMIOK,\r\nPembina apel: AJANG ZAENAL AFANDI,S.T., M.T.\r\nMC: ENDANG RAHMAWATI,', 1),
 (23, '2023-08-14', 'Webinar', 'Sekretariat', '09:00:00', 'Gedung B', 'DJADJAT SUDRAJAT,S.H., M.Si.', 2),
 (25, '2023-08-21', 'Webinar', 'Bidang SKPK', '09:00:00', 'Gedung B', 'DJADJAT SUDRAJAT,S.H., M.Si.', 1),
@@ -86,6 +86,7 @@ INSERT INTO `undangan` (`id`, `tgl`, `judul_undangan`, `jam_pelaksanaan`, `tempa
 CREATE TABLE `user` (
   `username` varchar(25) NOT NULL,
   `password` varchar(256) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `role_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -93,10 +94,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `password`, `role_id`) VALUES
-('admin', 'bpsdmjabar', '1'),
-('sekretariat', 'sekretariatbpsdm', '2'),
-('superadmin', 'bpsdm@sekretariat', '1');
+INSERT INTO `user` (`username`, `password`, `nama`, `role_id`) VALUES
+('admin', 'bpsdmjabar', 'Admin', '1'),
+('sekretariat', 'sekretariatbpsdm', 'Sekretaris', '2'),
+('superadmin', 'bpsdm@sekretariat', 'Admin', '1');
 
 --
 -- Indexes for dumped tables
