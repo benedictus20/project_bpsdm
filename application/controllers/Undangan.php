@@ -14,6 +14,7 @@ class Undangan extends CI_Controller
                           </div>');
             redirect('login');
         } else {
+            $data['user'] = $this->db->where('role_id', '1')->get('user')->row_array();
             $data['undangan'] = $this->db->get('undangan')->result_array();
             $this->load->view("undangan", $data);
         }

@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller
                             Anda belum Login! </div>');
             redirect('login');
         } else {
+            $data['user'] = $this->db->where('role_id', '1')->get('user')->row_array();
             $data['agenda'] = $this->db->count_all('agenda_bidang');
             $data['undangan'] = $this->db->count_all('undangan');
             $jumlah_pelatihan = ['pelatihan', 'webinar'];
