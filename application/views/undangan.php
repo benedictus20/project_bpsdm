@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('login/logout') ?>" class="nav-link">
+                    <a href="" class="nav-link" data-toggle="modal" data-target="#logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 nav-icon"></i>
                         <p>
                             Logout
@@ -291,8 +291,27 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <!-- Modal logout -->
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h5 class="modal-title" id="logoutLabel">LOGOUT</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url('login/logout'); ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Apa Anda Yakin Ingin Logout?</label>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Ya</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-
     <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
