@@ -79,6 +79,7 @@ class Undangan extends CI_Controller
                 $pdf = $this->upload->data('file_name');
             }
         }
+        $status = $this->input->post('status');
 
         $data = array(
             'id' => $id,
@@ -89,6 +90,7 @@ class Undangan extends CI_Controller
             'yang_ditugaskan' => $yang_ditugaskan,
             'nomor_surat' => $nomor_surat,
             'pdf' => $pdf,
+            'status' => $status
         );
         $this->db->where('id', $data['id']);
         $this->db->update('undangan', $data);

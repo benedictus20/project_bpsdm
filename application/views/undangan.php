@@ -122,6 +122,7 @@
                                         <th>Yang Ditugaskan</th>
                                         <th>Nomor Surat</th>
                                         <th>File Undangan</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </thead>
                                     <tbody>
@@ -134,6 +135,19 @@
                                                 <td><?php echo $b['yang_ditugaskan']; ?></td>
                                                 <td><?php echo $b['nomor_surat']; ?></td>
                                                 <td><?php echo $b['pdf']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($b['status'] == 0) {
+                                                        echo '<p class="badge badge-pill badge-warning">Belum disetujui</p>';
+                                                    } else {
+                                                        if ($b['status'] == 1) {
+                                                            echo '<p class="badge badge-pill badge-success">Telah disetujui</p>';
+                                                        } else {
+                                                            echo '<p class="badge badge-pill badge-danger">Ditolak</p>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editUndangan<?php echo $b['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteUndangan<?php echo $b['id']; ?>"><i class="fa fa-trash"></i></button>
