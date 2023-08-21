@@ -24,7 +24,7 @@ class Home extends CI_Controller
         $current_date = $date->format('d') . ' ' . $monthName . ' ' . $date->format('Y');
         $data['tanggal'] = $current_date;
         $data['agenda'] = $this->db->where('status', '1')->get('agenda_bidang')->result_array();
-        $data['undangan'] = $this->db->get('undangan')->result_array();
+        $data['undangan'] = $this->db->where('status', '1')->get('undangan')->result_array();
         $this->load->view("home", $data);
     }
 }
