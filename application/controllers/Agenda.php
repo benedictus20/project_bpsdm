@@ -49,6 +49,7 @@ class Agenda extends CI_Controller
         $jam = $this->input->post('Jam');
         $tempat = $this->input->post('tempat_kegiatan');
         $buka_acara = $this->input->post('buka_acara');
+        $status = $this->input->post('status');
 
         $data = array(
             'id' => $id,
@@ -57,7 +58,8 @@ class Agenda extends CI_Controller
             'bidang_penyelenggara' => $bidang,
             'Jam' => $jam,
             'tempat_kegiatan' => $tempat,
-            'buka_acara' => $buka_acara
+            'buka_acara' => $buka_acara,
+            'status' => $status
         );
         $this->db->where('id', $data['id']);
         $this->db->update('agenda_bidang', $data);

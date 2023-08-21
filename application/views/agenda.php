@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('login/logout') ?>" class="nav-link">
+                    <a href="" class="nav-link" data-toggle="modal" data-target="#logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 nav-icon"></i>
                         <p>
                             Logout
@@ -121,6 +121,7 @@
                                         <th>Jam Pelaksanaan</th>
                                         <th>Tempat Kegiatan</th>
                                         <th>Yang Ditugaskan</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </thead>
                                     <tbody>
@@ -132,6 +133,19 @@
                                                 <td><?php echo $a['Jam']; ?></td>
                                                 <td><?php echo $a['tempat_kegiatan']; ?></td>
                                                 <td><?php echo $a['buka_acara']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($a['status'] == 0) {
+                                                        echo '<p class="badge badge-pill badge-warning">Belum disetujui</p>';
+                                                    } else {
+                                                        if ($a['status'] == 1) {
+                                                            echo '<p class="badge badge-pill badge-success">Telah disetujui</p>';
+                                                        } else {
+                                                            echo '<p class="badge badge-pill badge-danger">Ditolak</p>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editData<?php echo $a['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteData<?php echo $a['id']; ?>"><i class="fa fa-trash"></i></button>
@@ -176,7 +190,7 @@
                         <div class="form-group">
                             <label>Bidang Penyelenggara</label>
                             <select class="form-control" name="bidang_penyelenggara">
-                                <option value="Bidang SPK">Bidang SPK</option>
+                                <option value="Bidang SKPK">Bidang SKPK</option>
                                 <option value="Bidang PKTI">Bidang PKTI</option>
                                 <option value="Bidang PKTU">Bidang PKTU</option>
                                 <option value="Bidang PKM">Bidang PKM</option>
@@ -236,7 +250,7 @@
                                 <label>Bidang Penyelenggara</label>
                                 <select class="form-control" name="bidang_penyelenggara">
                                     <option value="<?= $a['bidang_penyelenggara']; ?>"><?= $a['bidang_penyelenggara']; ?></option>
-                                    <option value="Bidang SPK">Bidang SPK</option>
+                                    <option value="Bidang SKPK">Bidang SKPK</option>
                                     <option value="Bidang PKTI">Bidang PKTI</option>
                                     <option value="Bidang PKTU">Bidang PKTU</option>
                                     <option value="Bidang PKM">Bidang PKM</option>
@@ -257,6 +271,9 @@
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
                                 <textarea name="buka_acara" class="form-control" rows="3"><?= $a['buka_acara']; ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="status" class="form-control" value="<?= $a['status'] == 0; ?>" readonly>
                             </div>
 
                     </div>
@@ -294,8 +311,28 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <!-- Modal logout -->
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h5 class="modal-title" id="logoutLabel">LOGOUT</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url('login/logout'); ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Apa Anda Yakin Ingin Logout?</label>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Ya</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-    </div>
+
     <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
