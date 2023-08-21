@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('login/logout') ?>" class="nav-link">
+                    <a href="" class="nav-link" data-toggle="modal" data-target="#logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 nav-icon"></i>
                         <p>
                             Logout
@@ -166,7 +166,7 @@
                     <h5 class="modal-title" id="tambahUndanganLabel">Tambah Undangan</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('undangan/tambah_undangan'); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('sekretaris/undangan_sekretaris/tambah_undangan'); ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Tanggal</label>
                             <input type="date" name="tgl" class="form-control" required>
@@ -218,7 +218,7 @@
                         <h5 class="modal-title" id="editUndanganLabel">Edit Agenda</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('undangan/edit_undangan'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('sekretaris/undangan_sekretaris/edit_undangan'); ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
 
                                 <input type="hidden" name="id" class="form-control" value="<?= $b['id']; ?>" readonly>
@@ -276,7 +276,7 @@
                         <h5 class="modal-title" id="deleteUndanganLabel">Hapus Undangan</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('undangan/delete_undangan'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('sekretaris/undangan_sekretaris/delete_undangan'); ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Anda Yakin akan menghapus Undangan <?= $b['judul_undangan'] ?> ?</label>
                                 <input type="hidden" name="id" required="" value="<?= $b['id']; ?>">
@@ -291,6 +291,27 @@
             </div>
         </div>
     <?php endforeach; ?>
+    </div>
+    <!-- Modal logout -->
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h5 class="modal-title" id="logoutLabel">LOGOUT</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url('login/logout'); ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Apa Anda Yakin Ingin Logout?</label>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Ya</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
