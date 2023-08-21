@@ -39,7 +39,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= base_url('') ?>dashboard/admin" class="nav-link">
+                    <a href="<?= base_url('') ?>sekretaris/dashboard_sekretaris" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('login/logout') ?>" class="nav-link">
+                    <a href="" class="nav-link" data-toggle="modal" data-target="#logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 nav-icon"></i>
                         <p>
                             Logout
@@ -121,6 +121,7 @@
                                         <th>Jam Pelaksanaan</th>
                                         <th>Tempat Kegiatan</th>
                                         <th>Yang Ditugaskan</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </thead>
                                     <tbody>
@@ -132,6 +133,69 @@
                                                 <td><?php echo $a['Jam']; ?></td>
                                                 <td><?php echo $a['tempat_kegiatan']; ?></td>
                                                 <td><?php echo $a['buka_acara']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($a['status'] == 0) {
+                                                        echo '<a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#setuju' . $a['id'] . '"><i class="fa fa-check" ></i></a>
+                                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#tolak' . $a['id'] . '"><i class="fa fa-times"></i></a>';
+                                                    ?>
+                                                        <!-- Modal setuju -->
+                                                        <div class="modal fade" id="setuju<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="setujuLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class=" modal-header">
+                                                                        <h5 class="modal-title" id="setujuLabel">KONFIRMASI</h5>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="<?= base_url('sekretaris/agenda_sekretaris/setuju'); ?>" method="post" enctype="multipart/form-data">
+                                                                            <div class="form-group">
+                                                                                <label>Apa Anda Yakin Untuk Setuju?</label>
+                                                                                <input type="hidden" name="status" class="form-control" value="<?= $a['status']; ?>" readonly>
+                                                                                <input type="hidden" name="id" class="form-control" value="<?= $a['id']; ?>" readonly>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Modal tolak -->
+                                                        <div class="modal fade" id="tolak<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="tolakLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class=" modal-header">
+                                                                        <h5 class="modal-title" id="tolakLabel">KONFIRMASI</h5>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="<?= base_url('sekretaris/agenda_sekretaris/tolak'); ?>" method="post" enctype="multipart/form-data">
+                                                                            <div class="form-group">
+                                                                                <label>Apa Anda Yakin Untuk Menolak?</label>
+                                                                                <input type="hidden" name="status" class="form-control" value="<?= $a['status']; ?>" readonly>
+                                                                                <input type="hidden" name="id" class="form-control" value="<?= $a['id']; ?>" readonly>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Ya</button>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                        if ($a['status'] == 1) {
+                                                            echo '<p class="badge badge-pill badge-success">Telah disetujui</p>';
+                                                        } else {
+                                                            echo '<p class="badge badge-pill badge-danger">Ditolak</p>';
+                                                        }
+                                                    }
+                                                    ?>
+
+                                                </td>
                                                 <td>
                                                     <button href="" class="badge rounded-pill text-bg-success" data-toggle="modal" data-target="#editData<?php echo $a['id']; ?>"><i class="fa fa-edit"></i> </button>
                                                     <button href="" class="badge rounded-pill text-bg-danger" data-toggle="modal" data-target="#deleteData<?php echo $a['id']; ?>"><i class="fa fa-trash"></i></button>
@@ -163,7 +227,7 @@
                     <h5 class="modal-title" id="tambahAgendaLabel">Tambah Agenda</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('agenda/tambah_agenda'); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('sekretaris/agenda_sekretaris/tambah_agenda'); ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Tanggal</label>
                             <input type="date" name="tgl" class="form-control" required>
@@ -176,7 +240,7 @@
                         <div class="form-group">
                             <label>Bidang Penyelenggara</label>
                             <select class="form-control" name="bidang_penyelenggara">
-                                <option value="Bidang SPK">Bidang SPK</option>
+                                <option value="Bidang SKPK">Bidang SKPK</option>
                                 <option value="Bidang PKTI">Bidang PKTI</option>
                                 <option value="Bidang PKTU">Bidang PKTU</option>
                                 <option value="Bidang PKM">Bidang PKM</option>
@@ -218,9 +282,8 @@
                         <h5 class="modal-title" id="editAgendaLabel">Edit Agenda</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('agenda/edit_agenda'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('sekretaris/agenda_sekretaris/edit_agenda'); ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-
                                 <input type="hidden" name="id" class="form-control" value="<?= $a['id']; ?>" readonly>
                             </div>
                             <div class="form-group">
@@ -236,7 +299,7 @@
                                 <label>Bidang Penyelenggara</label>
                                 <select class="form-control" name="bidang_penyelenggara">
                                     <option value="<?= $a['bidang_penyelenggara']; ?>"><?= $a['bidang_penyelenggara']; ?></option>
-                                    <option value="Bidang SPK">Bidang SPK</option>
+                                    <option value="Bidang SKPK">Bidang SKPK</option>
                                     <option value="Bidang PKTI">Bidang PKTI</option>
                                     <option value="Bidang PKTU">Bidang PKTU</option>
                                     <option value="Bidang PKM">Bidang PKM</option>
@@ -258,7 +321,9 @@
                                 <label>Yang Ditugaskan</label>
                                 <textarea name="buka_acara" class="form-control" rows="3"><?= $a['buka_acara']; ?></textarea>
                             </div>
-
+                            <div class="form-group">
+                                <input type="hidden" name="status" class="form-control" value="<?= $a['status'] ?>" readonly>
+                            </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -279,7 +344,7 @@
                         <h5 class="modal-title" id="deleteAgendaLabel">Hapus Data</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('agenda/delete_agenda'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('sekretaris/agenda_sekretaris/delete_agenda'); ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Anda Yakin akan menghapus Agenda <?= $a['nama_kegiatan'] ?> ?</label>
                                 <input type="hidden" name="id" required="" value="<?= $a['id']; ?>">
@@ -294,8 +359,28 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <!-- Modal logout -->
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h5 class="modal-title" id="logoutLabel">LOGOUT</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url('login/logout'); ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Apa Anda Yakin Ingin Logout?</label>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Ya</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-    </div>
+
     <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

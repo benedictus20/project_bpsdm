@@ -49,6 +49,7 @@ class Agenda_sekretaris extends CI_Controller
         $jam = $this->input->post('Jam');
         $tempat = $this->input->post('tempat_kegiatan');
         $buka_acara = $this->input->post('buka_acara');
+        $status = $this->input->post('status');
 
         $data = array(
             'id' => $id,
@@ -57,7 +58,8 @@ class Agenda_sekretaris extends CI_Controller
             'bidang_penyelenggara' => $bidang,
             'Jam' => $jam,
             'tempat_kegiatan' => $tempat,
-            'buka_acara' => $buka_acara
+            'buka_acara' => $buka_acara,
+            'status' => 1
         );
         $this->db->where('id', $data['id']);
         $this->db->update('agenda_bidang', $data);
@@ -76,5 +78,39 @@ class Agenda_sekretaris extends CI_Controller
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true"> &times;</span> </button> </div>');
         redirect('sekretaris/agenda_sekretaris/index');
+    }
+    public function setuju()
+    {
+        $id = $this->input->post('id');
+
+        $data = array(
+            'id' => $id,
+            'status' => 1
+        );
+        $this->db->where('id', $id);
+        if ($this->db->update('agenda_bidang', $data)) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Disetujui<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/agenda_sekretaris/index');
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Gagal Menyetujui agenda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/agenda_sekretaris/index');
+        }
+    }
+    public function tolak()
+    {
+        $id = $this->input->post('id');
+
+        $data = array(
+            'id' => $id,
+            'status' => 2
+        );
+        $this->db->where('id', $id);
+        if ($this->db->update('agenda_bidang', $data)) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Ditolak<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/agenda_sekretaris/index');
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Gagal Menolak Agenda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('sekretaris/agenda_sekretaris/index');
+        }
     }
 }
