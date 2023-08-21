@@ -106,10 +106,10 @@ class Agenda_sekretaris extends CI_Controller
         );
         $this->db->where('id', $id);
         if ($this->db->update('agenda_bidang', $data)) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Ditolak<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Agenda Berhasil Ditolak<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('sekretaris/agenda_sekretaris/index');
         } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Gagal Menolak Agenda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-warning" role="alert">Gagal Menolak Agenda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('sekretaris/agenda_sekretaris/index');
         }
     }
