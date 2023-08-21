@@ -45,7 +45,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= base_url('') ?>dashboard/admin" class="nav-link active">
+                    <a href="<?= base_url('') ?>dashboard" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -76,7 +76,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('login/logout') ?>" class="nav-link">
+                    <a href="" class="nav-link" data-toggle="modal" data-target="#logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 nav-icon"></i>
                         <p>
                             Logout
@@ -198,7 +198,30 @@
                 <script src="<?= base_url() ?>assets/vendor/dist/js/demo.js"></script>
             </div>
         </section>
+
+        <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class=" modal-header">
+                        <h5 class="modal-title" id="logoutLabel">Hapus Data</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?= base_url('login/logout'); ?>" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Apa Anda Yakin Ingin Logout?</label>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Ya</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Modal logout -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
