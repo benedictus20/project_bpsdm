@@ -219,7 +219,7 @@
                                         <label>File Undangan</label>
                                         <input type="text" name="pdf" class="form-control" value="<?= $b['pdf']; ?>" readonly>
                                     </div>
-
+                                    <a href="<?= base_url("./upload/" .  $b['pdf']) ?>" class="btn btn-primary" download>Download File</a>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
