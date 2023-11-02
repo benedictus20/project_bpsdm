@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Undangan extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model("Model_Undangan", "", TRUE);
+    }
     public function index()
     {
         if ($this->session->userdata('role_id') != '1') {
@@ -14,8 +19,8 @@ class Undangan extends CI_Controller
                           </div>');
             redirect('login');
         } else {
+            $data['undangan'] = $this->Model_Undangan->getUndangan()->result_array();
             $data['user'] = $this->db->where('role_id', '1')->get('user')->row_array();
-            $data['undangan'] = $this->db->get('undangan')->result_array();
             $this->load->view("undangan", $data);
         }
     }
@@ -52,8 +57,7 @@ class Undangan extends CI_Controller
             'nomor_surat' => $nomor_surat,
             'pdf' => $pdf,
         );
-        $this->db->insert('undangan', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Undangan Berhasil Ditambah</div>');
+        $this->Model_Undangan->tambah_undangan($data, 'undangan');
         redirect('undangan/index');
     }
     public function edit_undangan()
@@ -91,11 +95,9 @@ class Undangan extends CI_Controller
             'yang_ditugaskan' => $yang_ditugaskan,
             'nomor_surat' => $nomor_surat,
             'pdf' => $pdf,
-            'status' => $status
+            'status' => 0
         );
-        $this->db->where('id', $data['id']);
-        $this->db->update('undangan', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Undangan Berhasil Diedit</div>');
+        $this->Model_Undangan->update_undangan($data, 'undangan');
         redirect('undangan/index');
     }
     public function delete_undangan()
@@ -104,9 +106,7 @@ class Undangan extends CI_Controller
         $data = array(
             'id' => $id,
         );
-        $this->db->where('id', $data['id']);
-        $this->db->delete('undangan', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Undangan Berhasil Dihapus</div>');
+        $this->Model_Undangan->delete_undangan($data, 'undangan');
         redirect('undangan');
     }
 }
