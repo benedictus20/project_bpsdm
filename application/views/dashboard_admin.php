@@ -98,7 +98,7 @@
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                             <b>Hai, <?= $user['nama']; ?></b>
                         </span>
-                        <i class="fa fa-user-tie fa-lg"></i>
+                        <img class="img-profile rounded-circle" src="<?= base_url() ?>assets/img/logo.png" style="width: 40px;"></img>
                     </a>
                 </li>
             </ul>
