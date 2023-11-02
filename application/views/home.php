@@ -2,33 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>BPSDM</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets/img/logo.png" />
-    <!-- Bootstrap icons-->
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/fontawesome-free/css/all.min.css">
     <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/regular.css" rel="stylesheet" type="text/css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="<?= base_url() ?>assets/css/styles2.css" rel="stylesheet" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
+    <header id="header">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-dark py-3">
             <div class="container px-5">
@@ -40,7 +43,7 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="py-5">
+        <main class="py-5">
             <div class="container px-5 pb-3">
                 <div class="row">
                     <div class="col-sm-2 col-md-3 ">
@@ -50,41 +53,47 @@
                     </div>
                 </div>
             </div>
-            <div class="container px-5 pb-5">
-                <div class="row">
-                    <div>
-                        <div class="text-white bg-warning disabled color-palette">
-                            <h4 class="text-center text-white">Agenda Bidang</h4>
+            <section id="agenda_bidang">
+                <div class="container px-5 pb-5" data-aos="fade-up">
+                    <div class="row">
+                        <div>
+                            <div class="text-white bg-warning disabled color-palette">
+                                <h4 class="text-center text-white">Agenda Bidang</h4>
+                            </div>
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <th>Tanggal</th>
+                                    <th>Nama Kegiatan</th>
+                                    <th>Bidang Penyelenggara</th>
+                                    <th>Jam Pelaksanaan</th>
+                                    <th>Tempat Kegiatan</th>
+                                    <th>Yang Ditugaskan</th>
+                                    <th>Aksi</th>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($agenda as $a) : ?>
+                                        <tr>
+                                            <td><?php echo $a['tgl']; ?></td>
+                                            <td><?php echo $a['nama_kegiatan']; ?></td>
+                                            <td><?php echo $a['bidang_penyelenggara']; ?></td>
+                                            <td><?php echo $a['Jam']; ?></td>
+                                            <td><?php echo $a['tempat_kegiatan']; ?></td>
+                                            <td><?php echo $a['buka_acara']; ?></td>
+                                            <td><a href="" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#lihatAgenda<?php echo $a['id']; ?>">Lihat</a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                                <th>Tanggal</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Bidang Penyelenggara</th>
-                                <th>Jam Pelaksanaan</th>
-                                <th>Tempat Kegiatan</th>
-                                <th>Yang Ditugaskan</th>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($agenda as $a) : ?>
-                                    <tr>
-                                        <td><?php echo $a['tgl']; ?></td>
-                                        <td><?php echo $a['nama_kegiatan']; ?></td>
-                                        <td><?php echo $a['bidang_penyelenggara']; ?></td>
-                                        <td><?php echo $a['Jam']; ?></td>
-                                        <td><?php echo $a['tempat_kegiatan']; ?></td>
-                                        <td><?php echo $a['buka_acara']; ?></td>
-                                        <td><a href="" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#lihatAgenda<?php echo $a['id']; ?>">Lihat</a></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="container px-5 pb-3 d-flex justify-content-center">
-                        <button class="btn btn-block btn-warning" style="width: 200px;">Download Agenda</button>
+                        <div class="container px-5 pb-3 d-flex justify-content-center">
+                            <button class="btn btn-block btn-warning" style="width: 200px;">Download Agenda</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+                </div>
+                </div>
+                </div>
+            </section>
             </div>
             <!-- Lihat Agenda -->
             <?php
@@ -136,42 +145,46 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="container px-5 pb-5">
-                <div class="row">
-                    <div>
-                        <div class="text-white bg-success color-palette">
-                            <h4 class="text-center">Undangan</h4>
+
+            <section id="undangan">
+                <div class="container px-5 pb-5">
+                    <div class="row">
+                        <div>
+                            <div class="text-white bg-success color-palette">
+                                <h4 class="text-center">Undangan</h4>
+                            </div>
+                            <table id="example3" class="table table-bordered table-hover">
+                                <thead>
+                                    <th>Tanggal</th>
+                                    <th>Judul Undangan</th>
+                                    <th>Jam Pelaksanaan</th>
+                                    <th>Tempat Pelaksanan</th>
+                                    <th>Yang Ditugaskan</th>
+                                    <th>Nomor Surat</th>
+                                    <th>File Undangan</th>
+                                    <th>Aksi</th>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($undangan as $b) : ?>
+                                        <tr>
+                                            <td><?php echo $b['tgl']; ?></td>
+                                            <td><?php echo $b['judul_undangan']; ?></td>
+                                            <td><?php echo $b['jam_pelaksanaan']; ?></td>
+                                            <td><?php echo $b['tempat_pelaksana']; ?></td>
+                                            <td><?php echo $b['yang_ditugaskan']; ?></td>
+                                            <td><?php echo $b['nomor_surat']; ?></td>
+                                            <td><?php echo $b['pdf']; ?></td>
+                                            <td><a href="" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#lihatUndangan<?php echo $b['id']; ?>">Lihat</a></td>
+                                        <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                                <th>Tanggal</th>
-                                <th>Judul Undangan</th>
-                                <th>Jam Pelaksanaan</th>
-                                <th>Tempat Pelaksanan</th>
-                                <th>Yang Ditugaskan</th>
-                                <th>Nomor Surat</th>
-                                <th>File Undangan</th>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($undangan as $b) : ?>
-                                    <tr>
-                                        <td><?php echo $b['tgl']; ?></td>
-                                        <td><?php echo $b['judul_undangan']; ?></td>
-                                        <td><?php echo $b['jam_pelaksanaan']; ?></td>
-                                        <td><?php echo $b['tempat_pelaksana']; ?></td>
-                                        <td><?php echo $b['yang_ditugaskan']; ?></td>
-                                        <td><?php echo $b['nomor_surat']; ?></td>
-                                        <td><?php echo $b['pdf']; ?></td>
-                                        <td><a href="" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#lihatUndangan<?php echo $b['id']; ?>">Lihat</a></td>
-                                    <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="container px-5 pb-3 d-flex justify-content-center">
-                        <button class="btn btn-block btn-success " style="width: 200px;">Download Undangan</button>
+                        <div class="container px-5 pb-3 d-flex justify-content-center">
+                            <button class="btn btn-block btn-success " style="width: 200px;">Download Undangan</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
             <!-- Lihat Undangan -->
             <?php
             foreach ($undangan as $b) : ?>
@@ -229,14 +242,9 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-        </header>
+        </main>
         <!-- About Section-->
-    </main>
-    <!-- Core theme JS-->
-    <script src="<?= base_url('') ?>assets/js/scripts.js"></script>
-    <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </header>
     <!-- DataTables -->
     <script src="<?= base_url('assets/'); ?>vendor/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('assets/'); ?>vendor/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -249,22 +257,14 @@
     <!-- page script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+        $(document).ready(function() {
+            $('#example2').DataTable();
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#example3').DataTable();
+        });
     </script>
 </body>
 
