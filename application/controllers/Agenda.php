@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Agenda extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model("Model_Agenda", "", TRUE);
+    }
+
     public function index()
     {
         if ($this->session->userdata('role_id') != '1') {
@@ -14,7 +20,7 @@ class Agenda extends CI_Controller
                           </div>');
             redirect('login');
         } else {
-            $data['agenda'] = $this->db->get('agenda_bidang')->result_array();
+            $data['agenda'] = $this->Model_Agenda->getAgenda()->result_array();
             $data['user'] = $this->db->where('role_id', '1')->get('user')->row_array();
             $this->load->view("agenda", $data);
         }
@@ -36,9 +42,7 @@ class Agenda extends CI_Controller
             'tempat_kegiatan' => $tempat,
             'buka_acara' => $buka_acara
         );
-        $this->db->insert('agenda_bidang', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Ditambah<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true"> &times;</span> </button> </div>');
+        $this->Model_Agenda->tambah_agenda($data, 'agenda_bidang');
         redirect('agenda/index');
     }
     public function edit_agenda()
@@ -51,6 +55,9 @@ class Agenda extends CI_Controller
         $tempat = $this->input->post('tempat_kegiatan');
         $buka_acara = $this->input->post('buka_acara');
         $status = $this->input->post('status');
+        $where = array(
+            'id' => $id
+        );
 
         $data = array(
             'id' => $id,
@@ -60,12 +67,9 @@ class Agenda extends CI_Controller
             'Jam' => $jam,
             'tempat_kegiatan' => $tempat,
             'buka_acara' => $buka_acara,
-            'status' => $status
+            'status' => 0
         );
-        $this->db->where('id', $data['id']);
-        $this->db->update('agenda_bidang', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Diedit<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true"> &times;</span> </button> </div>');
+        $this->Model_Agenda->update_agenda($data, 'agenda_bidang');
         redirect('agenda/index');
     }
     public function delete_agenda()
@@ -74,10 +78,7 @@ class Agenda extends CI_Controller
         $data = array(
             'id' => $id,
         );
-        $this->db->where('id', $data['id']);
-        $this->db->delete('agenda_bidang', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true"> &times;</span> </button> </div>');
+        $this->Model_Agenda->delete_agenda($data, 'agenda_bidang');
         redirect('agenda');
     }
 }
