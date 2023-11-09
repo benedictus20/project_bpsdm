@@ -7,6 +7,7 @@ class Agenda_sekretaris extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Model_Agenda", "", TRUE);
+        $this->load->model("Model_Karyawan", "", TRUE);
     }
     public function index()
     {
@@ -20,6 +21,7 @@ class Agenda_sekretaris extends CI_Controller
             redirect('login');
         } else {
             $data['agenda'] = $this->Model_Agenda->getAgenda()->result_array();
+            $data['karyawan'] = $this->Model_Karyawan->getKaryawan()->result_array();
             $data['user'] = $this->db->where('role_id', '2')->get('user')->row_array();
             $this->load->view("sekretaris/agenda_sekretaris", $data);
         }

@@ -73,7 +73,7 @@
                                 <tbody>
                                     <?php foreach ($agenda as $a) : ?>
                                         <tr>
-                                            <td><?php echo $a['tgl']; ?></td>
+                                            <td><?php echo date('d/m/Y', strtotime($a['tgl'])); ?></td>
                                             <td><?php echo $a['nama_kegiatan']; ?></td>
                                             <td><?php echo $a['bidang_penyelenggara']; ?></td>
                                             <td><?php echo $a['Jam']; ?></td>
@@ -167,7 +167,7 @@
                                 <tbody>
                                     <?php foreach ($undangan as $b) : ?>
                                         <tr>
-                                            <td><?php echo $b['tgl']; ?></td>
+                                            <td><?php echo date('d/m/Y', strtotime($b['tgl'])); ?></td>
                                             <td><?php echo $b['judul_undangan']; ?></td>
                                             <td><?php echo $b['jam_pelaksanaan']; ?></td>
                                             <td><?php echo $b['tempat_pelaksana']; ?></td>

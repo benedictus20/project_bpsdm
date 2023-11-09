@@ -7,6 +7,7 @@ class Undangan extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Model_Undangan", "", TRUE);
+        $this->load->model("Model_Karyawan", "", TRUE);
     }
     public function index()
     {
@@ -20,6 +21,7 @@ class Undangan extends CI_Controller
             redirect('login');
         } else {
             $data['undangan'] = $this->Model_Undangan->getUndangan()->result_array();
+            $data['karyawan'] = $this->Model_Karyawan->getKaryawan()->result_array();
             $data['user'] = $this->db->where('role_id', '1')->get('user')->row_array();
             $this->load->view("undangan", $data);
         }

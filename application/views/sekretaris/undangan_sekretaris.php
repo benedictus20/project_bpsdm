@@ -141,7 +141,7 @@
                                     <tbody>
                                         <?php foreach ($undangan as $b) : ?>
                                             <tr>
-                                                <td><?php echo $b['tgl']; ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($b['tgl'])); ?></td>
                                                 <td><?php echo $b['judul_undangan']; ?></td>
                                                 <td><?php echo $b['jam_pelaksanaan']; ?></td>
                                                 <td><?php echo $b['tempat_pelaksana']; ?></td>
@@ -264,7 +264,14 @@
 
                         <div class="form-group">
                             <label>Yang Ditugaskan</label>
-                            <input type="text" name="yang_ditugaskan" class="form-control" required>
+                            <div class="form-group input-group">
+                                <input type="text" name="yang_ditugaskan" class="form-control" id="nama">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -289,7 +296,7 @@
     <?php
     foreach ($undangan as $b) : ?>
         <div class="modal fade" id="editUndangan<?php echo $b['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editUndanganLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class=" modal-header">
                         <h5 class="modal-title" id="editUndanganLabel">Edit Agenda</h5>
@@ -320,7 +327,14 @@
 
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
-                                <input type="text" name="yang_ditugaskan" class="form-control" value="<?= $b['yang_ditugaskan']; ?>" required>
+                                <div class="form-group input-group">
+                                    <input type="text" name="yang_ditugaskan" class="form-control" value="<?= $b['yang_ditugaskan']; ?>" id="editNama" required>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -343,6 +357,45 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <!-- Modal Pilih Karyawan -->
+    <div class="modal fade" tabindex="-1" id="pilihKaryawan" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h4 class="modal-title">Pilih Karyawan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <th>NO</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Nama Jabatan</th>
+                            <th>Aksi</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($karyawan as $k) : ?>
+                                <tr>
+                                    <td><?php echo $k['no']; ?></td>
+                                    <td><?php echo $k['nip']; ?></td>
+                                    <td><?php echo $k['nama']; ?></td>
+                                    <td><?php echo $k['nama_jabatan']; ?></td>
+                                    <td>
+                                        <button class="btn btn-xs btn-info" id="select" data-nama="<?= $k['nama']; ?>">
+                                            <i class="fa fa-check"> Select</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal hapus -->
     <?php
     foreach ($undangan as $b) : ?>
@@ -407,7 +460,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            $('#example1').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
             $('#example2').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#select', function() {
+                var nama = $(this).data('nama');
+                $('#nama').val(nama);
+                $('#pilihKaryawan').modal('hide');
+            });
+            $(document).on('click', '#select', function() {
+                var nama = $(this).data('nama');
+                $('#editNama').val(nama);
+                $('#pilihKaryawan').modal('hide');
+            });
         });
     </script>
 </body>

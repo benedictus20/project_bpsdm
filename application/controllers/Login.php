@@ -23,7 +23,7 @@ class Login extends CI_Controller
                     $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG ADMIN<button type="button" class="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times;</span> </button> </div>');
                     redirect('Dashboard');
                 } else {
-                    $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG SEKRETARIS<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times;</span> </button> </div>');
+                    $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">SELAMAT DATANG SEKRETARIAT<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times;</span> </button> </div>');
                     redirect('Sekretaris/dashboard_sekretaris');
                 }
             }
