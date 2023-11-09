@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
 
@@ -140,7 +141,7 @@
                                     <tbody>
                                         <?php foreach ($agenda as $a) : ?>
                                             <tr>
-                                                <td><?php echo $a['tgl']; ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($a['tgl'])); ?></td>
                                                 <td><?php echo $a['nama_kegiatan']; ?></td>
                                                 <td><?php echo $a['bidang_penyelenggara']; ?></td>
                                                 <td><?php echo $a['Jam']; ?></td>
@@ -223,9 +224,15 @@
 
                         <div class="form-group">
                             <label>Yang Ditugaskan</label>
-                            <textarea type="text" name="buka_acara" class="form-control" row="3"></textarea>
+                            <div class="form-group input-group">
+                                <textarea type="text" name="buka_acara" class="form-control" id="nama"> </textarea>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -283,7 +290,14 @@
 
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
-                                <textarea name="buka_acara" class="form-control" rows="3"><?= $a['buka_acara']; ?></textarea>
+                                <div class="form-group input-group">
+                                    <input type="text" name="buka_acara" class="form-control" value="<?= $a['buka_acara']; ?>" id="editNama">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="hidden" name="status" class="form-control" value="<?= $a['status'] == 0; ?>" readonly>
@@ -299,6 +313,45 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <!-- Modal Pilih Karyawan -->
+    <div class="modal fade" tabindex="-1" id="pilihKaryawan" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h4 class="modal-title">Pilih Karyawan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <th>NO</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Nama Jabatan</th>
+                            <th>Aksi</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($karyawan as $k) : ?>
+                                <tr>
+                                    <td><?php echo $k['no']; ?></td>
+                                    <td><?php echo $k['nip']; ?></td>
+                                    <td><?php echo $k['nama']; ?></td>
+                                    <td><?php echo $k['nama_jabatan']; ?></td>
+                                    <td>
+                                        <button class="btn btn-xs btn-info" id="select" data-nama="<?= $k['nama']; ?>">
+                                            <i class="fa fa-check"></i> Select
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal hapus -->
     <?php
     foreach ($agenda as $a) : ?>
@@ -345,10 +398,6 @@
             </div>
         </div>
     </div>
-
-    <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
     <script src="<?= base_url('assets/'); ?>vendor/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('assets/'); ?>vendor/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -362,9 +411,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            $('#example1').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
             $('#example2').DataTable();
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#select', function() {
+                var nama = $(this).data('nama');
+                $('#nama').val(nama);
+                $('#pilihKaryawan').modal('hide');
+            });
+            $(document).on('click', '#select', function() {
+                var nama = $(this).data('nama');
+                $('#editNama').val(nama);
+                $('#pilihKaryawan').modal('hide');
+            });
+        });
+    </script>
+
 </body>
 
 </html>
