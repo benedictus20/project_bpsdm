@@ -86,7 +86,7 @@
                             </table>
                         </div>
                         <div class="container px-5 pb-3 d-flex justify-content-center">
-                            <button class="btn btn-block btn-warning" style="width: 200px;">Download Agenda</button>
+                            <a href="<?= base_url('export_agenda') ?>" class="btn btn-block btn-warning" style="width: 200px;">Download Agenda</a>
                         </div>
                     </div>
                 </div>
@@ -180,7 +180,7 @@
                             </table>
                         </div>
                         <div class="container px-5 pb-3 d-flex justify-content-center">
-                            <button class="btn btn-block btn-success " style="width: 200px;">Download Undangan</button>
+                            <a href="<?= base_url('export_undangan') ?>" class="btn btn-block btn-success " style="width: 200px;">Download Undangan</a>
                         </div>
                     </div>
                 </div>
