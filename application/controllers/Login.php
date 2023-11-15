@@ -14,7 +14,7 @@ class Login extends CI_Controller
         } else {
             $auth = $this->ModelLogin->cek_login();
             if ($auth == FALSE) {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">Username atau Password Anda Salah !</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">Username atau Password Anda Salah ! </div>');
                 redirect('login');
             } else {
                 $this->session->set_userdata('username', $auth->username);
