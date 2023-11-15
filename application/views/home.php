@@ -58,9 +58,9 @@
                     <div class="row">
                         <div>
                             <div class="text-white bg-warning disabled color-palette">
-                                <h4 class="text-center text-white">Agenda Bidang</h4>
+                                <h5 class="text-center" style="color: #202020;">Agenda Bidang</h5>
                             </div>
-                            <table id="example2" class="table table-bordered table-hover">
+                            <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <th>Tanggal</th>
                                     <th>Nama Kegiatan</th>
@@ -86,7 +86,7 @@
                             </table>
                         </div>
                         <div class="container px-5 pb-3 d-flex justify-content-center">
-                            <a href="<?= base_url('export_agenda') ?>" class="btn btn-block btn-warning" style="width: 200px;">Download Agenda</a>
+                            <a class="btn btn-block btn-warning" style="width: 200px;" data-toggle="modal" data-target="#downloadAgenda">Download Agenda</a>
                         </div>
                     </div>
                 </div>
@@ -94,6 +94,42 @@
                 </div>
                 </div>
             </section>
+            <!-- Download Agenda -->
+            <div class="modal fade" tabindex="-1" id="downloadAgenda" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class=" modal-header">
+                            <h4 class="modal-title">Download Agenda</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body table-responsive">
+                            <table id="example3" class="table table-bordered table-hover">
+                                <thead>
+                                    <th>Tanggal</th>
+                                    <th>Nama Kegiatan</th>
+                                    <th>Bidang Penyelenggara</th>
+                                    <th>Jam Pelaksanaan</th>
+                                    <th>Tempat Kegiatan</th>
+                                    <th>Yang Ditugaskan</th>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($agenda as $a) : ?>
+                                        <tr>
+                                            <td><?php echo date('d/m/Y', strtotime($a['tgl'])); ?></td>
+                                            <td><?php echo $a['nama_kegiatan']; ?></td>
+                                            <td><?php echo $a['bidang_penyelenggara']; ?></td>
+                                            <td><?php echo $a['Jam']; ?></td>
+                                            <td><?php echo $a['tempat_kegiatan']; ?></td>
+                                            <td><?php echo $a['buka_acara']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Lihat Agenda -->
             <?php
@@ -151,9 +187,9 @@
                     <div class="row">
                         <div>
                             <div class="text-white bg-success color-palette">
-                                <h4 class="text-center">Undangan</h4>
+                                <h5 class="text-center" style="color: #202020;">Undangan</h5>
                             </div>
-                            <table id="example3" class="table table-bordered table-hover">
+                            <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <th>Tanggal</th>
                                     <th>Judul Undangan</th>
@@ -180,11 +216,49 @@
                             </table>
                         </div>
                         <div class="container px-5 pb-3 d-flex justify-content-center">
-                            <a href="<?= base_url('export_undangan') ?>" class="btn btn-block btn-success " style="width: 200px;">Download Undangan</a>
+                            <a class="btn btn-block btn-success " style="width: 200px;" data-toggle="modal" data-target="#downloadUndangan">Download Undangan</a>
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- Download Undangan -->
+            <div class="modal fade" tabindex="-1" id="downloadUndangan" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class=" modal-header">
+                            <h4 class="modal-title">Download Agenda</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body table-responsive">
+                            <table id="example4" class="table table-bordered table-hover">
+                                <thead>
+                                    <th>Tanggal</th>
+                                    <th>Judul Undangan</th>
+                                    <th>Jam Pelaksanaan</th>
+                                    <th>Tempat Pelaksanan</th>
+                                    <th>Yang Ditugaskan</th>
+                                    <th>Nomor Surat</th>
+                                    <th>File Undangan</th>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($undangan as $b) : ?>
+                                        <tr>
+                                            <td><?php echo date('d/m/Y', strtotime($b['tgl'])); ?></td>
+                                            <td><?php echo $b['judul_undangan']; ?></td>
+                                            <td><?php echo $b['jam_pelaksanaan']; ?></td>
+                                            <td><?php echo $b['tempat_pelaksana']; ?></td>
+                                            <td><?php echo $b['yang_ditugaskan']; ?></td>
+                                            <td><?php echo $b['nomor_surat']; ?></td>
+                                            <td><?php echo $b['pdf']; ?></td>
+                                        <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Lihat Undangan -->
             <?php
             foreach ($undangan as $b) : ?>
@@ -256,14 +330,35 @@
     <script src="<?= base_url('assets/'); ?>vendor/dist/js/demo.js"></script>
     <!-- page script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#example1').DataTable();
             $('#example2').DataTable();
         });
     </script>
     <script>
         $(document).ready(function() {
-            $('#example3').DataTable();
+            $('#example3').DataTable({
+                //scrollY : '250px',
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
+            $('#example4').DataTable({
+                //scrollY : '250px',
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
         });
     </script>
 </body>
