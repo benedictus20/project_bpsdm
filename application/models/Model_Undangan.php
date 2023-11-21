@@ -26,4 +26,13 @@ class Model_Undangan extends CI_Model
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Undangan Berhasil Dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true"> &times;</span> </button> </div>');
     }
+    public function check_existing_undangan($tgl, $jam_pelaksanaan, $yang_ditugaskan)
+    {
+        $this->db->where('tgl', $tgl);
+        $this->db->where('jam_pelaksanaan', $jam_pelaksanaan);
+        $this->db->where('yang_ditugaskan', $yang_ditugaskan);
+        $query = $this->db->get('undangan');
+
+        return $query->num_rows() > 0;
+    }
 }

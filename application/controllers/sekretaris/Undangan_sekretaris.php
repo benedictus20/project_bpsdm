@@ -50,17 +50,26 @@ class Undangan_sekretaris extends CI_Controller
             }
         }
 
-        $data = array(
-            'tgl ' => $tgl,
-            'judul_undangan' => $judul_undangan,
-            'jam_pelaksanaan' => $jam_pelaksanaan,
-            'tempat_pelaksana' => $tempat_pelaksana,
-            'yang_ditugaskan' => $yang_ditugaskan,
-            'nomor_surat' => $nomor_surat,
-            'pdf' => $pdf,
-            'status' => 1
-        );
-        $this->Model_Undangan->tambah_undangan($data, 'undangan');
+        // Check apabila jadwal bentrok
+        $existing_undangan = $this->Model_Undangan->check_existing_undangan($tgl, $jam_pelaksanaan, $yang_ditugaskan);
+
+        if ($existing_undangan) {
+            // Undangan apabila bentrok
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Undangan Bentrok! Undangan gagal ditambahkan!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"> &times;</span> </button> </div>');
+        } else {
+            $data = array(
+                'tgl ' => $tgl,
+                'judul_undangan' => $judul_undangan,
+                'jam_pelaksanaan' => $jam_pelaksanaan,
+                'tempat_pelaksana' => $tempat_pelaksana,
+                'yang_ditugaskan' => $yang_ditugaskan,
+                'nomor_surat' => $nomor_surat,
+                'pdf' => $pdf,
+                'status' => 1
+            );
+            $this->Model_Undangan->tambah_undangan($data, 'undangan');
+        }
         redirect('sekretaris/undangan_sekretaris/index');
     }
     public function edit_undangan()
@@ -87,19 +96,28 @@ class Undangan_sekretaris extends CI_Controller
                 $pdf = $this->upload->data('file_name');
             }
         }
+        // Check apabila jadwal bentrok
+        $existing_undangan = $this->Model_Undangan->check_existing_undangan($tgl, $jam_pelaksanaan, $yang_ditugaskan);
 
-        $data = array(
-            'id' => $id,
-            'tgl ' => $tgl,
-            'judul_undangan' => $judul_undangan,
-            'jam_pelaksanaan' => $jam_pelaksanaan,
-            'tempat_pelaksana' => $tempat_pelaksana,
-            'yang_ditugaskan' => $yang_ditugaskan,
-            'nomor_surat' => $nomor_surat,
-            'pdf' => $pdf,
-            'status' => 1
-        );
-        $this->Model_Undangan->update_undangan($data, 'undangan');
+        if ($existing_undangan) {
+            // Agenda apabila bentrok
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Undangan Bentrok! Undangan gagal ditambahkan!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"> &times;</span> </button> </div>');
+        } else {
+            // Agenda is unique, proceed with insertion
+            $data = array(
+                'id' => $id,
+                'tgl ' => $tgl,
+                'judul_undangan' => $judul_undangan,
+                'jam_pelaksanaan' => $jam_pelaksanaan,
+                'tempat_pelaksana' => $tempat_pelaksana,
+                'yang_ditugaskan' => $yang_ditugaskan,
+                'nomor_surat' => $nomor_surat,
+                'pdf' => $pdf,
+                'status' => 1
+            );
+            $this->Model_Undangan->update_undangan($data, 'undangan');
+        }
         redirect('sekretaris/undangan_sekretaris/index');
     }
     public function delete_undangan()

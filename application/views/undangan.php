@@ -299,7 +299,7 @@
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
                                 <div class="form-group input-group">
-                                    <input type="text" name="yang_ditugaskan" class="form-control" value="<?= $b['yang_ditugaskan']; ?>" id="editNama" required>
+                                    <input type="text" name="yang_ditugaskan" class="form-control yang_ditugaskan" value="<?= $b['yang_ditugaskan']; ?>" required>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
                                             <i class="fa fa-search"></i>
@@ -422,9 +422,8 @@
             });
             $(document).on('click', '#select', function() {
                 var nama = $(this).data('nama');
-                $('#editNama').val(nama);
+                $('.yang_ditugaskan').val(nama);
                 $('#pilihKaryawan').modal('hide');
-                $('#editData').modal('show');
             });
         })
     </script>
