@@ -291,7 +291,7 @@
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
                                 <div class="form-group input-group">
-                                    <input type="text" name="buka_acara" class="form-control" value="<?= $a['buka_acara']; ?>" id="editNama">
+                                    <input type="text" name="buka_acara" class="form-control buka_acara" value="<?= $a['buka_acara']; ?>">
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
                                             <i class="fa fa-search"></i>
@@ -300,7 +300,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" name="status" class="form-control" value="<?= $a['status'] == 0; ?>" readonly>
+                                <input type="hidden" name="status" class="form-control" value="<?= $a['status']; ?>" readonly>
                             </div>
 
                     </div>
@@ -426,9 +426,13 @@
                 $('#nama').val(nama);
                 $('#pilihKaryawan').modal('hide');
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
             $(document).on('click', '#select', function() {
                 var nama = $(this).data('nama');
-                $('#editNama').val(nama);
+                $('.buka_acara').val(nama); // Untuk modal Edit Agenda
                 $('#pilihKaryawan').modal('hide');
             });
         });

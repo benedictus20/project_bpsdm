@@ -26,4 +26,13 @@ class Model_Agenda extends CI_Model
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Agenda Berhasil Dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true"> &times;</span> </button> </div>');
     }
+    public function check_existing_agenda($tgl, $jam, $buka_acara)
+    {
+        $this->db->where('tgl', $tgl);
+        $this->db->where('Jam', $jam);
+        $this->db->where('buka_acara', $buka_acara);
+        $query = $this->db->get('agenda_bidang');
+
+        return $query->num_rows() > 0;
+    }
 }
