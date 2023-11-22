@@ -116,7 +116,6 @@
     <script>
     $(document).ready(function() {
         $('#example2').DataTable({
-            //scrollY : '250px',
             dom: 'Bfrtip',
             buttons: [
                 'excel', 'pdf', 'print'

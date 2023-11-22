@@ -346,14 +346,12 @@
     <script>
         $(document).ready(function() {
             $('#example3').DataTable({
-                //scrollY : '250px',
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'
                 ]
             });
             $('#example4').DataTable({
-                //scrollY : '250px',
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'
