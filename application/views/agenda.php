@@ -185,7 +185,7 @@
     </div>
     <!-- Modal tambah -->
     <div class="modal fade" id="tambahAgenda" tabindex="-1" role="dialog" aria-labelledby="tambahAgendaLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class=" modal-header">
                     <h5 class="modal-title" id="tambahAgendaLabel">Tambah Agenda</h5>
@@ -246,7 +246,7 @@
     <?php
     foreach ($agenda as $a) : ?>
         <div class="modal fade" id="editData<?php echo $a['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editAgendaLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class=" modal-header">
                         <h5 class="modal-title" id="editAgendaLabel">Edit Agenda</h5>
@@ -269,7 +269,7 @@
                             <div class="form-group">
                                 <label>Bidang Penyelenggara</label>
                                 <select class="form-control" name="bidang_penyelenggara">
-                                    <option value="<?= $a['bidang_penyelenggara']; ?>"><?= $a['bidang_penyelenggara']; ?></option>
+                                    <option><?= $a['bidang_penyelenggara']; ?></option>
                                     <option value="Bidang SKPK">Bidang SKPK</option>
                                     <option value="Bidang PKTI">Bidang PKTI</option>
                                     <option value="Bidang PKTU">Bidang PKTU</option>
@@ -291,9 +291,9 @@
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
                                 <div class="form-group input-group">
-                                    <input type="text" name="buka_acara" class="form-control buka_acara" value="<?= $a['buka_acara']; ?>">
+                                    <textarea type="text" name="buka_acara" class="form-control" id="editPilihKaryawan"><?= $a['buka_acara']; ?></textarea>
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
+                                        <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawanEdit">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </span>
@@ -340,14 +340,57 @@
                                     <td><?php echo $k['nama']; ?></td>
                                     <td><?php echo $k['nama_jabatan']; ?></td>
                                     <td>
-                                        <button class="btn btn-xs btn-info" id="select" data-nama="<?= $k['nama']; ?>">
-                                            <i class="fa fa-check"></i> Select
-                                        </button>
+                                        <input type="checkbox" id="cek_karyawan" data-nama="<?= $k['nama']; ?>">
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="selectKaryawan()" id="select">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Pilih Karyawan Edit-->
+    <div class="modal fade" tabindex="-1" id="pilihKaryawanEdit" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class=" modal-header">
+                    <h4 class="modal-title">Pilih Karyawan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table id="example3" class="table table-bordered table-striped">
+                        <thead>
+                            <th>NO</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Nama Jabatan</th>
+                            <th>Aksi</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($karyawan as $k) : ?>
+                                <tr>
+                                    <td><?php echo $k['no']; ?></td>
+                                    <td><?php echo $k['nip']; ?></td>
+                                    <td><?php echo $k['nama']; ?></td>
+                                    <td><?php echo $k['nama_jabatan']; ?></td>
+                                    <td>
+                                        <input type="checkbox" id="cek_karyawanEdit" data-nama="<?= $k['nama']; ?>">
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="selectKaryawanEdit()">Select</button>
                 </div>
             </div>
         </div>
@@ -412,6 +455,7 @@
     <script>
         $(document).ready(function() {
             $('#example1').DataTable();
+            $('#example3').DataTable();
         });
     </script>
     <script>
@@ -420,23 +464,37 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $(document).on('click', '#select', function() {
+        function selectKaryawan() {
+            var selectedKaryawan = [];
+            var selectedEditKaryawan = [];
+
+            // Loop melalui kotak centang yang dipilih dan simpan datanya
+            $('#example1').DataTable().$('#cek_karyawan:checked').each(function(index) {
                 var nama = $(this).data('nama');
-                $('#nama').val(nama);
+                selectedKaryawan.push((index + 1) + '. ' + nama);
+                // Perbarui input "Yang Ditugaskan" di modal "Tambah Agenda"
+                $('#nama').val(selectedKaryawan.join('\n'));
+
                 $('#pilihKaryawan').modal('hide');
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $(document).on('click', '#select', function() {
+        }
+
+        function selectKaryawanEdit() {
+            var selectedEditKaryawan = [];
+
+            // Loop melalui kotak centang yang dipilih dan simpan datanya
+            $('#example3').DataTable().$('#cek_karyawanEdit:checked').each(function(index) {
                 var nama = $(this).data('nama');
-                $('.buka_acara').val(nama); // Untuk modal Edit Agenda
-                $('#pilihKaryawan').modal('hide');
+                selectedEditKaryawan.push((index + 1) + '. ' + nama);
             });
-        });
+
+            // Perbarui input "Yang Ditugaskan" di modal "Edit Agenda"
+            $('.buka_acara').val(selectedEditKaryawan.join('\n'));
+
+            $('#pilihKaryawanEdit').modal('hide');
+        }
     </script>
+
 
 </body>
 

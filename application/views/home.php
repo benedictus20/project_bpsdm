@@ -192,6 +192,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <th>Tanggal</th>
+                                    <th>Pengirim Undangan</th>
                                     <th>Judul Undangan</th>
                                     <th>Jam Pelaksanaan</th>
                                     <th>Tempat Pelaksanan</th>
@@ -204,6 +205,7 @@
                                     <?php foreach ($undangan as $b) : ?>
                                         <tr>
                                             <td><?php echo date('d/m/Y', strtotime($b['tgl'])); ?></td>
+                                            <td><?php echo $b['pengirim_undangan']; ?></td>
                                             <td><?php echo $b['judul_undangan']; ?></td>
                                             <td><?php echo $b['jam_pelaksanaan']; ?></td>
                                             <td><?php echo $b['tempat_pelaksana']; ?></td>
@@ -277,6 +279,10 @@
                                     <div class="form-group">
                                         <label>Tanggal</label>
                                         <input type="date" name="tgl" class="form-control" value="<?= $b['tgl']; ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pengirim Undangan</label>
+                                        <input type="text" name="tgl" class="form-control" value="<?= $b['pengirim_undangan']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Judul Undangan</label>

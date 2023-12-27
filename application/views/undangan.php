@@ -129,6 +129,7 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <th>Tanggal</th>
+                                        <th>Pengirim Undangan</th>
                                         <th>Judul Undangan</th>
                                         <th>Jam Pelaksanaan</th>
                                         <th>Tempat Pelaksanan</th>
@@ -142,6 +143,7 @@
                                         <?php foreach ($undangan as $b) : ?>
                                             <tr>
                                                 <td><?php echo date('d/m/Y', strtotime($b['tgl'])); ?></td>
+                                                <td><?php echo $b['pengirim_undangan']; ?></td>
                                                 <td><?php echo $b['judul_undangan']; ?></td>
                                                 <td><?php echo $b['jam_pelaksanaan']; ?></td>
                                                 <td><?php echo $b['tempat_pelaksana']; ?></td>
@@ -220,6 +222,10 @@
                             <input type="date" name="tgl" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label>Pengirim Undangan</label>
+                            <input type="text" name="pengirim_undangan" class="form-control" required>
+                        </div>
+                        <div class="form-group">
                             <label>Judul Undangan</label>
                             <input type="text" name="judul_undangan" class="form-control" required>
                         </div>
@@ -270,7 +276,7 @@
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class=" modal-header">
-                        <h5 class="modal-title" id="editUndanganLabel">Edit Agenda</h5>
+                        <h5 class="modal-title" id="editUndanganLabel">Edit Undangan</h5>
                     </div>
                     <div class="modal-body">
                         <form action="<?= base_url('undangan/edit_undangan'); ?>" method="post" enctype="multipart/form-data">
@@ -281,6 +287,10 @@
                             <div class="form-group">
                                 <label>Tanggal</label>
                                 <input type="date" name="tgl" class="form-control" value="<?= $b['tgl']; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Pengirim Undangan</label>
+                                <input type="text" name="pengirim_undangan" class="form-control" value="<?= $b['pengirim_undangan']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label>Judul Undangan</label>
