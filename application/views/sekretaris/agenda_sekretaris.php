@@ -340,7 +340,7 @@
                             <div class="form-group">
                                 <label>Yang Ditugaskan</label>
                                 <div class="form-group input-group">
-                                    <input type="text" name="buka_acara" class="form-control buka_acara" value="<?= $a['buka_acara']; ?>">
+                                    <textarea type="text" name="buka_acara" class="form-control buka_acara"><?= $a['buka_acara']; ?></textarea>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#pilihKaryawan">
                                             <i class="fa fa-search"></i>
@@ -388,14 +388,16 @@
                                     <td><?php echo $k['nama']; ?></td>
                                     <td><?php echo $k['nama_jabatan']; ?></td>
                                     <td>
-                                        <button class="btn btn-xs btn-info" id="select" data-nama="<?= $k['nama']; ?>">
-                                            <i class="fa fa-check"> Select</i>
-                                        </button>
+                                        <input type="checkbox" id="cek_karyawan" data-nama="<?= $k['nama']; ?>">
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="selectKaryawan()" id="select">Select</button>
                 </div>
             </div>
         </div>
@@ -472,18 +474,20 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $(document).on('click', '#select', function() {
+        function selectKaryawan() {
+            var selectedKaryawan = [];
+            var selectedEditKaryawan = [];
+
+            // Loop melalui kotak centang yang dipilih dan simpan datanya
+            $('#example1').DataTable().$('#cek_karyawan:checked').each(function(index) {
                 var nama = $(this).data('nama');
-                $('#nama').val(nama);
+                selectedKaryawan.push((index + 1) + '. ' + nama);
+                // Perbarui input "Yang Ditugaskan" di modal "Tambah Agenda"
+                $('#nama').val(selectedKaryawan.join('\n'));
+
                 $('#pilihKaryawan').modal('hide');
             });
-            $(document).on('click', '#select', function() {
-                var nama = $(this).data('nama');
-                $('.buka_acara').val(nama);
-                $('#pilihKaryawan').modal('hide');
-            });
-        });
+        }
     </script>
 </body>
 

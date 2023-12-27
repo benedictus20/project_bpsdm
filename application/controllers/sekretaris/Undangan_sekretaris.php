@@ -29,6 +29,7 @@ class Undangan_sekretaris extends CI_Controller
     public function tambah_undangan()
     {
         $tgl = $this->input->post('tgl');
+        $pengirim_undangan = $this->input->post('pengirim_undangan');
         $judul_undangan = $this->input->post('judul_undangan');
         $jam_pelaksanaan = $this->input->post('jam_pelaksanaan');
         $tempat_pelaksana = $this->input->post('tempat_pelaksana');
@@ -60,6 +61,7 @@ class Undangan_sekretaris extends CI_Controller
         } else {
             $data = array(
                 'tgl ' => $tgl,
+                'pengirim_undangan ' => $pengirim_undangan,
                 'judul_undangan' => $judul_undangan,
                 'jam_pelaksanaan' => $jam_pelaksanaan,
                 'tempat_pelaksana' => $tempat_pelaksana,
@@ -76,6 +78,7 @@ class Undangan_sekretaris extends CI_Controller
     {
         $id = $this->input->post('id');
         $tgl = $this->input->post('tgl');
+        $pengirim_undangan = $this->input->post('pengirim_undangan');
         $judul_undangan = $this->input->post('judul_undangan');
         $jam_pelaksanaan = $this->input->post('jam_pelaksanaan');
         $tempat_pelaksana = $this->input->post('tempat_pelaksana');
@@ -108,6 +111,7 @@ class Undangan_sekretaris extends CI_Controller
             $data = array(
                 'id' => $id,
                 'tgl ' => $tgl,
+                'pengirim_undangan ' => $pengirim_undangan,
                 'judul_undangan' => $judul_undangan,
                 'jam_pelaksanaan' => $jam_pelaksanaan,
                 'tempat_pelaksana' => $tempat_pelaksana,
