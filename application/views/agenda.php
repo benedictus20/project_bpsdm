@@ -489,7 +489,7 @@
             });
 
             // Perbarui input "Yang Ditugaskan" di modal "Edit Agenda"
-            $('.buka_acara').val(selectedEditKaryawan.join('\n'));
+            $('textarea[name="buka_acara"]').val(selectedEditKaryawan.join('\n'));
 
             $('#pilihKaryawanEdit').modal('hide');
         }
